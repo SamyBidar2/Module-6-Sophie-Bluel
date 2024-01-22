@@ -203,3 +203,20 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+.Filtres {
+  display: flex;
+  justify-content: center;
+}
+
+.Filtres ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.Filtres input[type="submit"] {
+  width: 198px;
+  height: 37px;
+  font-size: 16px;
+}
