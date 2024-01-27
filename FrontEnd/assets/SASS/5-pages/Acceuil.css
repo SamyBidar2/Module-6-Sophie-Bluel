@@ -1,0 +1,60 @@
+#introduction {
+  display: flex;
+  align-items: center;
+}
+
+#introduction figure {
+  flex: 1;
+}
+
+#introduction img {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+#introduction article {
+  flex: 1;
+}
+
+#introduction h2 {
+  margin-bottom: 1em;
+}
+
+#introduction p {
+  margin-bottom: 0.5em;
+}
+
+#portfolio h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.gallery img {
+  width: 100%;
+}
+
+.Filtres {
+  display: flex;
+  justify-content: center;
+}
+
+.Filtres ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.Filtres input[type="submit"] {
+  width: 198px;
+  height: 37px;
+  font-size: 16px;
+}

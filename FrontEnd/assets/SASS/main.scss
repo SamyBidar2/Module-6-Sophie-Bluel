@@ -1,5 +1,62 @@
-@import "./1-base/_normalize";
-@import "./2-utils/_functions";
-@import "./2-utils/_mixins";
-@import "./2-utils/_variables";
+@import "./1-base/normalize";
+@import "./1-base/base";
+@import "./2-utils/functions";
+@import "./2-utils/mixins";
+@import "./2-utils/variables";
+@import "./3-layouts/header";
+@import "./3-layouts/Formulaire";
+@import "./3-layouts/footer";
+@import "./4-components/Composants";
+@import "./5-pages/Acceuil";
+@import "./5-pages/login";
 
+body {
+	max-width: 1140px;
+	margin:auto;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+}
+
+section {
+	margin: 50px 0
+}
+
+// #introduction {
+// 	display: flex;
+// 	align-items: center;
+// }
+// #introduction figure {
+// 	flex: 1
+// }
+// #introduction img {
+// 	display: block;
+// 	margin: auto;
+// 	width: 80%;
+// }
+
+// #introduction article {
+// 	flex: 1
+// }
+// #introduction h2 {
+// 	margin-bottom: 1em;
+// }
+
+// #introduction p {
+// 	margin-bottom: 0.5em;
+// }
+// #portfolio h2 {
+// 	text-align: center;
+// 	margin-bottom: 1em;
+// }
+// .gallery {
+// 	width: 100%;
+// 	display: grid;
+// 	grid-template-columns: 1fr 1fr 1fr;
+// 	grid-column-gap: 20px;
+// 	grid-row-gap: 20px;
+// }
+
+// .gallery img {
+// 	width: 100%;
+
+// }

@@ -8,7 +8,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
-	<!-- <link rel="stylesheet" href="./assets/main.scss"> -->
+	<link rel="stylesheet"  href="./assets/SASS/main.css">
 </head>
 <body>
     <header>
@@ -17,19 +17,21 @@
             <ul>
                 <li>projets</li>
                 <li>contact</li>
-                <li>login</li>
+                <li><a href="./Login.html">login</a></li>
                 <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <form>
+        <h2>Log In</h2>
+        <form id="LogForm">
             <input type="text" name="mail" id="mailLogin">
             <input type="password" name="password" id="PWD">
-            
         </form>
+        
         <button onclick="login()">Envoyer</button>
+        <span>Mot de passe oublié</span>
     </main>
 
     <footer>
