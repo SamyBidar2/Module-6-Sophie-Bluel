@@ -75,6 +75,11 @@ h2 {
   color: #1D6154;
 }
 
+body {
+  font-family: 'Work Sans';
+  font-size: 14px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -132,6 +137,34 @@ li:hover {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#LogForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 30px 0px;
+}
+
+#LogForm div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+#LogForm label {
+  color: #3D3D3D;
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
+}
+
 input[type="submit"] {
   font-family: 'Syne';
   font-weight: 700;
@@ -143,10 +176,20 @@ input[type="submit"] {
   border-radius: 60px;
 }
 
-footer nav ul {
-  display: flex;
-  justify-content: flex-end;
-  margin: 2em;
+#LogForm input {
+  width: 379px;
+  height: 51px;
+  flex-shrink: 0;
+  background: #FFF;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+.bouton {
+  height: 37px;
+  width: 198px;
+  flex-shrink: 0;
+  border-radius: 60px;
+  border: 1px solid #1D6154;
 }
 
 #introduction {
@@ -193,22 +236,59 @@ footer nav ul {
   width: 100%;
 }
 
-button {
-  font-family: 'Syne';
-  font-weight: 700;
-  color: white;
-  background-color: #1D6154;
-  margin: 2em auto;
-  width: 180px;
+.Filtres {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.Filtres ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.Filtres ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 16px;
+  color: #1D6154;
   text-align: center;
-  border-radius: 60px;
+  font-family: Syne;
+}
+
+.Filtres ul li:active {
+  color: #FFFEF8;
+  background: #1D6154;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+main h2 {
+  margin-top: 100px;
+}
+
+main a {
+  margin-bottom: 355px;
+  color: #3D3D3D;
+  font-family: "Work Sans";
+  font-size: 14px;
+  text-decoration-line: underline;
 }
 
 body {
   max-width: 1140px;
   margin: auto;
-  font-family: 'Work Sans';
-  font-size: 14px;
 }
 
 section {

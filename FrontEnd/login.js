@@ -21,11 +21,24 @@ async function login(){
       });
 
     let result = await response.json();
-    console.log(result.message);
 
-    console.log(result.token)
+    //résultat de l'authentification
+    //si un token est retourné, alors l'identification a fonctionné correctement. Sinon on a une erreur.
+    if (result.token != null) {
+      window.location.href = './index.html';
+      console.log(result.token);
+    }
+    else{
+      //si le message de retour est "user not found", on a une erreur sur l'ID, sinon on a forcément une erreur sur le MP
+      console.log(result.message);
+      if(result.message == "user not found")
+        window.alert('Erreur: Indentifiant incorrect.');
+
+      else
+        window.alert('Erreur: Mot de passe incorrect.');
+    }
 
 }
 
-console.log('chargé')
+//console.log('chargé')
 

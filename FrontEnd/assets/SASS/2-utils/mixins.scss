@@ -1,0 +1,18 @@
+@mixin MixTexte{
+    color: #3D3D3D;
+    font-family: "Work Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@mixin MixTexteBoutons{
+    color: #1D6154;
+    text-align: center;
+    font-family: Syne;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

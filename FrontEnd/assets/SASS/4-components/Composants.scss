@@ -1,2 +1,28 @@
+// Input pour bouton envoyer (formulaire et login)
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+// Input pour les champs mail et Pwd du formulaire login
+#LogForm input{
+    width: 379px;
+    height: 51px;
+    flex-shrink: 0;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
 
-
+//Boutons filtres
+.bouton{
+	height: 37px;
+	width:198px;
+	flex-shrink: 0;
+	border-radius: 60px;
+	border: 1px solid #1D6154;	
+}

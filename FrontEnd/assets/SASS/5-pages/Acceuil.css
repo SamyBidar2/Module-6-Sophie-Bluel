@@ -45,16 +45,29 @@
 .Filtres {
   display: flex;
   justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .Filtres ul {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-bottom: 30px;
 }
 
-.Filtres input[type="submit"] {
-  width: 198px;
-  height: 37px;
+.Filtres ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   font-size: 16px;
+  color: #1D6154;
+  text-align: center;
+  font-family: Syne;
+}
+
+.Filtres ul li:active {
+  color: #FFFEF8;
+  background: #1D6154;
 }
