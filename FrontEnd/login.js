@@ -22,10 +22,14 @@ async function login(){
 
     let result = await response.json();
 
+    //Stockage du token
+    
+
     //résultat de l'authentification
     //si un token est retourné, alors l'identification a fonctionné correctement. Sinon on a une erreur.
     if (result.token != null) {
       window.location.href = './index.html';
+      sessionStorage.setItem('Token', result.token);
       console.log(result.token);
     }
     else{

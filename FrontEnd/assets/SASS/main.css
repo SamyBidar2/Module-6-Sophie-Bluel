@@ -261,7 +261,7 @@ input[type="submit"] {
   font-family: Syne;
 }
 
-.Filtres ul li:active {
+.Filtres ul li.selected {
   color: #FFFEF8;
   background: #1D6154;
 }

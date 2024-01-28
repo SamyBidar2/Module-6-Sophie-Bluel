@@ -1,56 +1,82 @@
 let UrlSrc; 
 let Titre;
 
-function CreationGalerie() {
-  return fetch('http://localhost:5678/api/works') // Renvoie la promesse pour permettre la gestion asynchrone
-    .then(res => res.json()) 
-    .then(data => {
-      if (data.length > 0) 
-      {
-        const Galerie = document.querySelector('.gallery');
+// Fonction pour interroger l'API et récupérer les données
+async function InterrogerAPIWorks(){
+    const WorksReponse = await fetch('http://localhost:5678/api/works');
+    
+    if (!WorksReponse.ok) {
+      throw new Error('Erreur lors de la requête fetch');
+    }
 
-        for (let i=0; i<data.length; i++)
-        {
-            const UrlSrc = data[i].imageUrl; // Stocke la valeur dans la variable UrlSrc
-            console.log('URL retournée', UrlSrc);
+    const data = await WorksReponse.json();
+    // console.log(data);
 
-            const Titre = data[i].title; //stocke la valeur dans la variable Titre
-            console.log('Titre retourné', Titre);
+    return data;
+} 
 
-            //création des éléments
-            const figure = document.createElement('figure');
+// Fonction pour créer la galerie en fonction de la catégorie
+function CreationGalerie(data, categoryId){
+  
+  const Galerie = document.querySelector('.gallery');
 
-            const img = document.createElement('img');
-            img.src=UrlSrc;
-            img.alt=Titre;
+  // Supprime tous les éléments actuels de la galerie
+  Galerie.innerHTML = '';
 
-            const figcaption = document.createElement('figcaption');
-            figcaption.textContent=Titre;
+  for (let i = 0; i < data.length; i++) {
 
-            //Ajout des éléments img et figcaption à figure
-            figure.appendChild(img);
-            figure.appendChild(figcaption);
+    // Vérifie si la catégorie correspond au filtre (ou affiche tout si pas de filtre)
+    if (categoryId === null || data[i].categoryId === categoryId) {
+        
+      const UrlSrc = data[i].imageUrl; // Stocke la valeur dans la variable UrlSrc
+      console.log('URL retournée', UrlSrc);
 
-            //Ajout des éléments figure à Galerie
-            Galerie.appendChild(figure);
-        }
-      } else {
-        console.error('Aucun élément trouvé.');
+      const Titre = data[i].title; //stocke la valeur dans la variable Titre
+      console.log('Titre retourné', Titre);
+
+      // Création des éléments
+      const figure = document.createElement('figure');
+      const img = document.createElement('img');
+      img.src=UrlSrc;
+      img.alt=Titre;
+
+      const figcaption = document.createElement('figcaption');
+      figcaption.textContent = Titre;
+
+      // Ajout des éléments img et figcaption à figure
+      figure.appendChild(img);
+      figure.appendChild(figcaption);
+
+      // Ajout de l'élément figure à la Galerie
+      Galerie.appendChild(figure);
       }
-    })
+  }
+  console.log('galerie créée pour le filtre'+ ' ' + categoryId)
 }
 
-// Appelle la fonction
-CreationGalerie();
+// Fonction pour afficher la galerie en fonction de la catégorie
+async function AfficherGalerieParCategorie(categoryId){
+  // Interroge l'API pour récupérer les données
+  const data = await InterrogerAPIWorks();
+    
+  // Crée la galerie en fonction de la catégorie spécifiée
+  await CreationGalerie(data, categoryId);
 
+}
 
-        //Création d'un modèle pour l'ajout des balises dans le Html
-      //   const figure = `
-      //   <figure>
-      //       <img src="${UrlSrc}" alt="${Titre}">
-      //       <figcaption>${Titre}</figcaption>
-      //   </figure>
-      // `;
+// Chargement de la galerie entière par défaut
+window.onload = function(){
+  AfficherGalerieParCategorie(null);  // null pour afficher toutes les catégories
+}
 
-        // Ajoute l'image dans la balise contenant la classe Gallery
-       // document.querySelector('.gallery').innerHTML = figure;
+//fonction pour changer de classe en fonction de la sélection du filtre
+function select(clickedButton) {
+  // Supprime la classe "selected" de tous les boutons
+  var buttons = document.querySelectorAll('.bouton');
+  buttons.forEach(function (btn) {
+      btn.classList.remove('selected');
+  });
+
+  // Ajoute la classe "selected" au bouton cliqué
+  clickedButton.classList.add('selected');
+}
