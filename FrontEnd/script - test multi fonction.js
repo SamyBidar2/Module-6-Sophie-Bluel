@@ -1,6 +1,5 @@
 let UrlSrc; 
 let Titre;
-let data;
 
 // Fonction pour interroger l'API et récupérer les données
 async function InterrogerAPIWorks(){
@@ -10,7 +9,7 @@ async function InterrogerAPIWorks(){
       throw new Error('Erreur lors de la requête fetch');
     }
 
-    data = await WorksReponse.json();
+    const data = await WorksReponse.json();
     // console.log(data);
 
     return data;
@@ -25,18 +24,18 @@ function CreationGalerie(data, categoryId){
   Galerie.innerHTML = '';
 
   for (let i = 0; i < data.length; i++) {
+
     // Vérifie si la catégorie correspond au filtre (ou affiche tout si pas de filtre)
     if (categoryId === null || data[i].categoryId === categoryId) {
         
-      const UrlSrc = data[i].imageUrl;
+      const UrlSrc = data[i].imageUrl; // Stocke la valeur dans la variable UrlSrc
       console.log('URL retournée', UrlSrc);
 
-      const Titre = data[i].title; 
+      const Titre = data[i].title; //stocke la valeur dans la variable Titre
       console.log('Titre retourné', Titre);
 
       // Création des éléments
       const figure = document.createElement('figure');
-      figure.id = "figure" + data[i].id;
       const img = document.createElement('img');
       img.src=UrlSrc;
       img.alt=Titre;
@@ -57,12 +56,12 @@ function CreationGalerie(data, categoryId){
 
 // Fonction pour afficher la galerie en fonction de la catégorie
 async function AfficherGalerieParCategorie(categoryId){
-  // Interroge l'API pour récupérer les données si elles n'ont pas été récupérées
-  if (!data) {
-    await InterrogerAPIWorks();
-  }    
+  // Interroge l'API pour récupérer les données
+  const data = await InterrogerAPIWorks();
+    
   // Crée la galerie en fonction de la catégorie spécifiée
-  CreationGalerie(data, categoryId);
+  await CreationGalerie(data, categoryId);
+
 }
 
 // Chargement de la galerie entière par défaut
