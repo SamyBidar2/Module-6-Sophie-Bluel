@@ -17,3 +17,7 @@ main a {
   font-size: 14px;
   text-decoration-line: underline;
 }
+
+main .MessageErreur {
+  color: red;
+}

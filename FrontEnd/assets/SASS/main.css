@@ -286,6 +286,10 @@ main a {
   text-decoration-line: underline;
 }
 
+main .MessageErreur {
+  color: red;
+}
+
 body {
   max-width: 1140px;
   margin: auto;
