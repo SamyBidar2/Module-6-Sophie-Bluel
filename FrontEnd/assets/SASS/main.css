@@ -243,6 +243,10 @@ input[type="submit"] {
   visibility: hidden;
 }
 
+.visible {
+  visibility: visible;
+}
+
 .gallery {
   width: 100%;
   display: grid;

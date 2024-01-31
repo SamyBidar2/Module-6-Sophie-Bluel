@@ -65,11 +65,6 @@ async function AfficherGalerieParCategorie(categoryId){
   CreationGalerie(data, categoryId);
 }
 
-// Chargement de la galerie entière par défaut
-window.onload = function(){
-  AfficherGalerieParCategorie(null);  // null pour afficher toutes les catégories
-}
-
 //fonction pour changer de classe en fonction de la sélection du filtre
 function select(clickedButton) {
   // Supprime la classe "selected" de tous les boutons
@@ -81,3 +76,30 @@ function select(clickedButton) {
   // Ajoute la classe "selected" au bouton cliqué
   clickedButton.classList.add('selected');
 }
+
+
+window.onload = function(){
+  // Chargement de la galerie entière par défaut
+    AfficherGalerieParCategorie(null);  // null pour afficher toutes les catégories
+
+  //Afficher le bouton modifier si le login est correct.
+    //Récupère le token stocké pour vérifier si l'utilisateur est connecté
+    var userToken = sessionStorage.getItem('Token');
+    const BoutonModifier = document.getElementById('BoutonModifier');
+
+    if(userToken){
+      BoutonModifier.classList.remove('invisible');
+      BoutonModifier.classList.add('visible');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

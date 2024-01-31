@@ -38,7 +38,7 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
-		<div class="modifier">
+		<div id="BoutonModifier" class="modifier invisible">
 			<!-- bouton modifier -->
 			<i class="fa-regular fa-pen-to-square"></i>
 			<p>modifier</p>
@@ -52,6 +52,7 @@
 				<li class="bouton" onclick="AfficherGalerieParCategorie(3), select(this)">Hôtels & restaurants</li>
 			</ul>
 		</div>
+
 		<div class="gallery">
 		</div> 
 	</section>
@@ -68,6 +69,12 @@
 			<input type="submit" value="Envoyer">
 		</form>
 	</section>
+<aside id="modale" aria-hidden="true" >
+	<div class="ModaleGallerie">
+		<h2>Coucou</h2>
+	</div>
+</aside>
+
 </main>
 
 <footer>
@@ -79,5 +86,6 @@
 </footer>
 
 <script src="script.js"></script>
+<!-- <script src="login.js"></script> -->
 </body>
 </html>
