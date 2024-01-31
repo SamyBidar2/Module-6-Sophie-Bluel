@@ -29,6 +29,27 @@
 	margin-bottom: 1em;
 }
 
+#portfolio{
+	position: relative;
+}
+
+//Mise en page du bouton modifier
+.modifier{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	position: absolute;
+	top: 110px;
+	right:350px;
+}
+
+.invisible{
+	visibility: hidden;
+}
+
+
 //style pour la galerie d'images
 .gallery {
 	width: 100%;
@@ -74,3 +95,4 @@
 	}
 	
 }
+

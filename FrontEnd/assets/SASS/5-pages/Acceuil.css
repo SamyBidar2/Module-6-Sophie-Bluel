@@ -30,6 +30,25 @@
   margin-bottom: 1em;
 }
 
+#portfolio {
+  position: relative;
+}
+
+.modifier {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 110px;
+  right: 350px;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
 .gallery {
   width: 100%;
   display: grid;
