@@ -77,6 +77,47 @@ function select(clickedButton) {
   clickedButton.classList.add('selected');
 }
 
+// Fonction pour créer la galerie dans la fenetre Modale en fonction de la catégorie
+function CreationModaleGalerie(data){
+  
+  const ModaleGalerie = document.querySelector('.ModaleGalerie');
+
+  // Supprime tous les éléments actuels de la galerie
+  ModaleGalerie.innerHTML = '';
+
+  for (let i = 0; i < data.length; i++) {
+      const UrlSrc = data[i].imageUrl;
+      console.log('URL retournée', UrlSrc);
+
+      // Création des éléments
+      const img = document.createElement('img');
+      img.id = "image" + data[i].id;
+      img.src=UrlSrc;
+      img.alt=Titre;
+
+      ModaleGalerie.appendChild(img);
+
+  }
+  console.log('galerie créée dans la modale')
+}
+
+// Fonction pour afficher dans la fenetre Modale en fonction de la catégorie
+async function AfficherModaleGalerieParCategorie(){
+  if (!data) {
+    await InterrogerAPIWorks();
+  }    
+  CreationModaleGalerie(data);
+}
+
+//Fonction pour ouvrir la fenetre Modale
+function OuvrirModale(){
+  const AfficherModale = document.getElementById('modale');
+  AfficherModale.classList.remove('invisible');
+  AfficherModale.classList.add('visible');
+
+   //Ajoute les images dans la modale
+   AfficherModaleGalerieParCategorie(null);
+}
 
 window.onload = function(){
   // Chargement de la galerie entière par défaut
@@ -87,9 +128,20 @@ window.onload = function(){
     var userToken = sessionStorage.getItem('Token');
     const BoutonModifier = document.getElementById('BoutonModifier');
 
+    //si le token existe alors on rend le bouton visible
     if(userToken){
       BoutonModifier.classList.remove('invisible');
       BoutonModifier.classList.add('visible');
+
+      //Créer le bandeau Mode Edition
+      const ModeEdition = `
+      <div class="ModeEdition">
+		  <i class="fa-regular fa-pen-to-square"></i>
+		  <p>Mode édition</p>
+	    </div>`;
+
+      // Ajoute le code dans la div #ModeEdition pour faire apparaitre le bandeau
+      document.getElementById('ModeEdition').innerHTML = ModeEdition;
     }
 }
 

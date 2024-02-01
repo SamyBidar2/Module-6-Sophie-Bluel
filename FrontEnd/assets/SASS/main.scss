@@ -11,10 +11,12 @@
 @import "./5-pages/login";
 @import "./5-pages/Modale.scss";
 
-body {
+body{
 	max-width: 1140px;
 	margin:auto;
-	
+	// position: relative;
+	// display: flex;
+	// justify-content: center;
 }
 
 section {

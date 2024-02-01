@@ -1,5 +1,6 @@
 let UrlSrc; 
 let Titre;
+let data;
 
 // Fonction pour interroger l'API et récupérer les données
 async function InterrogerAPIWorks(){
@@ -9,7 +10,7 @@ async function InterrogerAPIWorks(){
       throw new Error('Erreur lors de la requête fetch');
     }
 
-    const data = await WorksReponse.json();
+    data = await WorksReponse.json();
     // console.log(data);
 
     return data;
@@ -24,18 +25,18 @@ function CreationGalerie(data, categoryId){
   Galerie.innerHTML = '';
 
   for (let i = 0; i < data.length; i++) {
-
     // Vérifie si la catégorie correspond au filtre (ou affiche tout si pas de filtre)
     if (categoryId === null || data[i].categoryId === categoryId) {
         
-      const UrlSrc = data[i].imageUrl; // Stocke la valeur dans la variable UrlSrc
+      const UrlSrc = data[i].imageUrl;
       console.log('URL retournée', UrlSrc);
 
-      const Titre = data[i].title; //stocke la valeur dans la variable Titre
+      const Titre = data[i].title; 
       console.log('Titre retourné', Titre);
 
       // Création des éléments
       const figure = document.createElement('figure');
+      figure.id = "figure" + data[i].id;
       const img = document.createElement('img');
       img.src=UrlSrc;
       img.alt=Titre;
@@ -56,17 +57,12 @@ function CreationGalerie(data, categoryId){
 
 // Fonction pour afficher la galerie en fonction de la catégorie
 async function AfficherGalerieParCategorie(categoryId){
-  // Interroge l'API pour récupérer les données
-  const data = await InterrogerAPIWorks();
-    
+  // Interroge l'API pour récupérer les données si elles n'ont pas été récupérées
+  if (!data) {
+    await InterrogerAPIWorks();
+  }    
   // Crée la galerie en fonction de la catégorie spécifiée
-  await CreationGalerie(data, categoryId);
-
-}
-
-// Chargement de la galerie entière par défaut
-window.onload = function(){
-  AfficherGalerieParCategorie(null);  // null pour afficher toutes les catégories
+  CreationGalerie(data, categoryId);
 }
 
 //fonction pour changer de classe en fonction de la sélection du filtre
@@ -80,3 +76,45 @@ function select(clickedButton) {
   // Ajoute la classe "selected" au bouton cliqué
   clickedButton.classList.add('selected');
 }
+
+
+window.onload = function(){
+  // Chargement de la galerie entière par défaut
+    AfficherGalerieParCategorie(null);  // null pour afficher toutes les catégories
+
+  //Afficher le bouton modifier si le login est correct.
+    //Récupère le token stocké pour vérifier si l'utilisateur est connecté
+    var userToken = sessionStorage.getItem('Token');
+    const BoutonModifier = document.getElementById('BoutonModifier');
+
+    //si le token existe alors on rend le bouton visible
+    if(userToken){
+      BoutonModifier.classList.remove('invisible');
+      BoutonModifier.classList.add('visible');
+
+      //Créer le bandeau Mode Edition
+      const ModeEdition = `
+      <div class="ModeEdition">
+		  <i class="fa-regular fa-pen-to-square"></i>
+		  <p>modifier</p>
+	    </div>`;
+
+      // Ajoute le code dans la div #ModeEdition pour faire apparaitre le bandeau
+      document.getElementById('ModeEdition').innerHTML = ModeEdition;
+
+      //Ajoute les images dans la modale
+      const ModaleGalerie = document.querySelector('.ModaleGalerie');
+      
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

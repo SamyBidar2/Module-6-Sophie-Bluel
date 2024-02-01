@@ -7,7 +7,7 @@ input[type="submit"]{
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 // Input pour les champs mail et Pwd du formulaire login
 #LogForm input{
@@ -25,4 +25,22 @@ input[type="submit"]{
 	flex-shrink: 0;
 	border-radius: 60px;
 	border: 1px solid #1D6154;	
+}
+
+//Ajustements pour le bouton de la modale
+.modalebtn{
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+	width: 237px;
+	height: 36px;
+	border-radius: 60px;
+	background-color: #1D6154;
+	margin : 2.2em auto ;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	text-align: center;
+	
+	
 }

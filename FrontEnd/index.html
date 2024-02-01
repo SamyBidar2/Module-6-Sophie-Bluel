@@ -12,80 +12,98 @@
 	<!-- <link rel="stylesheet" href="./assets/style.css"> -->
 	<link rel="stylesheet" href="./assets/SASS/main.css">
 </head>
+
+
+
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li><a href="./Login.html">login</a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div id="BoutonModifier" class="modifier invisible">
-			<!-- bouton modifier -->
-			<i class="fa-regular fa-pen-to-square"></i>
-			<p>modifier</p>
-		</div>
+<div id="ModeEdition">
+</div>
 
-		<div class="Filtres">
+<!-- <div id="Maincontainer"> -->
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
 			<ul>
-				<li class="bouton selected" onclick="AfficherGalerieParCategorie(null), select(this)">Tous</li>
-				<li class="bouton" onclick="AfficherGalerieParCategorie(1), select(this)">Objets</li>
-				<li class="bouton" onclick="AfficherGalerieParCategorie(2), select(this)">Appartements</li>
-				<li class="bouton" onclick="AfficherGalerieParCategorie(3), select(this)">Hôtels & restaurants</li>
+				<li>projets</li>
+				<li>contact</li>
+				<li><a href="./Login.html">login</a></li>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
-		</div>
+		</nav>
+	</header>
 
-		<div class="gallery">
-		</div> 
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-<aside id="modale" aria-hidden="true" >
-	<div class="ModaleGallerie">
-		<h2>Coucou</h2>
-	</div>
-</aside>
+	<main>
+		<section id="introduction">
+			<figure>
+				<img src="./assets/images/sophie-bluel.png" alt="">
+			</figure>
+			<article>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</article>
+		</section>
 
-</main>
+		<section id="portfolio">
+			<h2>Mes Projets</h2>
+			<div id="BoutonModifier" class="modifier invisible" onclick="OuvrirModale()">
+				<!-- bouton modifier -->
+				<i class="fa-regular fa-pen-to-square"></i>
+				<p>modifier</p>
+			</div>
 
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
+			<div class="Filtres">
+				<ul>
+					<li class="bouton selected" onclick="AfficherGalerieParCategorie(null), select(this)">Tous</li>
+					<li class="bouton" onclick="AfficherGalerieParCategorie(1), select(this)">Objets</li>
+					<li class="bouton" onclick="AfficherGalerieParCategorie(2), select(this)">Appartements</li>
+					<li class="bouton" onclick="AfficherGalerieParCategorie(3), select(this)">Hôtels & restaurants</li>
+				</ul>
+			</div>
 
-<script src="script.js"></script>
-<!-- <script src="login.js"></script> -->
+			<div class="gallery">
+			</div> 
+		</section>
+
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<input type="submit" value="Envoyer">
+			</form>
+		</section>
+
+		<!-- fenetre modale -->
+		<aside id="modale" class="modale invisible" aria-hidden="true" >
+			<div id="ModaleContainer">
+				<h2>Galerie photo</h2>
+				<div class="ModaleGalerie"></div>
+				<hr>
+				<div class="modalebtn">Ajouter une photo</div>
+
+			</div>
+			
+		</aside>
+
+	</main>
+
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
+<!-- </div> -->
+
+	<script src="script.js"></script>
+
 </body>
 </html>
