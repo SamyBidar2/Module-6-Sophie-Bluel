@@ -13,7 +13,7 @@
     #ModaleContainer{
         width: 630px;
         height: 688px;
-        position: static;
+        position: relative;
         border-radius: 10px;
         padding-top: 30px;
         background: rgba(255, 255, 255, 1);
@@ -39,6 +39,15 @@
             height: auto;
             // border-radius: 10px;
         }
+
+        & i{
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+            position:absolute;
+            top:24px;
+            right: 24px;
+        }
     }
     
 
@@ -60,6 +69,8 @@
         width: 420px;
         border: 1px solid rgba(179, 179, 179, 1);
     }
+.js-modal-close{
 
+}
    
 }

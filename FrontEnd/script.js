@@ -112,12 +112,30 @@ async function AfficherModaleGalerieParCategorie(){
 //Fonction pour ouvrir la fenetre Modale
 function OuvrirModale(){
   const AfficherModale = document.getElementById('modale');
+
   AfficherModale.classList.remove('invisible');
   AfficherModale.classList.add('visible');
+  AfficherModale.removeAttribute('aria-hidden');
+  AfficherModale.setAttribute('aria-modal', 'true');
 
-   //Ajoute les images dans la modale
-   AfficherModaleGalerieParCategorie(null);
+  //Ajoute les images dans la modale
+  AfficherModaleGalerieParCategorie(null);
+
+  // const Fermeture = document.querySelector('.js-modal-close');
+  // Fermeture.addEventListener('click', FermerModale);
+  // Fermeture.querySelector('js-modal-close').addEventListener('click', FermerModale)
 }
+
+//fonction pour fermer la fenetre Modale
+function FermerModale(){
+  const FermerModale = document.getElementById('modale');
+
+  FermerModale.classList.remove('visible');
+  FermerModale.classList.add('invisible');
+  FermerModale.setAttribute('aria-hidden', 'true');
+  FermerModale.removeAttribute('aria-modal');
+}
+
 
 window.onload = function(){
   // Chargement de la galerie entière par défaut
