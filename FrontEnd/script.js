@@ -77,11 +77,6 @@ function select(clickedButton) {
   clickedButton.classList.add('selected');
 }
 
-//fonction suppression image
-// function Supprimerimage(id){
-//   console.log('identifiant', id);
-// }
-
 // Fonction pour créer la galerie dans la fenetre Modale en fonction de la catégorie
 function CreationModaleGalerie(data){
   
@@ -116,8 +111,13 @@ function CreationModaleGalerie(data){
       
       Corbeille.addEventListener('click', () => {
         //fonction suppression
+        //On utilise l'id de l'image pour repérer l'image à supprimer, et on supprime son parent (donc ici le conteneur),
+        //ce qui permet de réadapter automatiquement la grille.
+        // Ensuite on appelle la fonction SuppressionImageGalerie qui va supprimer l'image dans l'API
         console.log('identifiant', data[i].id);
-        document.getElementById(img.id).parentElement.remove(); //On utilise l'id de l'image pour repérer l'image à supprimer, et on supprime son parent (donc ici le conteneur), ce qui permet de réadapter automatiquement la grille
+        
+        document.getElementById(img.id).parentElement.remove(); 
+        SuppressionImageGalerie(data[i].id);
       });
 
   }
@@ -157,6 +157,28 @@ function FermerModale(){
   FermerModale.removeAttribute('aria-modal');
 }
 
+//Fonction de suppression des images dans la galerie principale (appel à l'API et DELETE)
+function SuppressionImageGalerie(id){
+  const figure = document.getElementById("figure" + id);
+
+  if (figure) {
+    var userToken = sessionStorage.getItem('Token');
+    fetch ("http://localhost:5678/api/works/"+ id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ userToken
+        },
+    }).then (Response =>{
+      if (Response.ok){
+        console.log("Image "+id+ "supprimée")
+      }
+      else{
+        console.log("Erreur lors de la suppression")
+      }
+    })
+  }
+}
 
 window.onload = function(){
   // Chargement de la galerie entière par défaut
