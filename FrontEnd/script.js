@@ -77,6 +77,11 @@ function select(clickedButton) {
   clickedButton.classList.add('selected');
 }
 
+//fonction suppression image
+// function Supprimerimage(id){
+//   console.log('identifiant', id);
+// }
+
 // Fonction pour créer la galerie dans la fenetre Modale en fonction de la catégorie
 function CreationModaleGalerie(data){
   
@@ -95,7 +100,25 @@ function CreationModaleGalerie(data){
       img.src=UrlSrc;
       img.alt=Titre;
 
-      ModaleGalerie.appendChild(img);
+      const Corbeille = document.createElement('div');
+      Corbeille.classList.add('Corbeille');
+
+      const conteneur = document.createElement('div');
+      conteneur.classList.add('conteneursuppression');
+
+      const icone = document.createElement('i');
+      icone.classList.add('fa-solid', 'fa-trash-can');
+      
+      ModaleGalerie.appendChild(conteneur);
+      conteneur.appendChild(img);
+      conteneur.appendChild(Corbeille);
+      Corbeille.appendChild(icone);
+      
+      Corbeille.addEventListener('click', () => {
+        //fonction suppression
+        console.log('identifiant', data[i].id);
+        document.getElementById(img.id).parentElement.remove(); //On utilise l'id de l'image pour repérer l'image à supprimer, et on supprime son parent (donc ici le conteneur), ce qui permet de réadapter automatiquement la grille
+      });
 
   }
   console.log('galerie créée dans la modale')
@@ -121,9 +144,7 @@ function OuvrirModale(){
   //Ajoute les images dans la modale
   AfficherModaleGalerieParCategorie(null);
 
-  // const Fermeture = document.querySelector('.js-modal-close');
-  // Fermeture.addEventListener('click', FermerModale);
-  // Fermeture.querySelector('js-modal-close').addEventListener('click', FermerModale)
+ 
 }
 
 //fonction pour fermer la fenetre Modale
@@ -167,7 +188,13 @@ window.onload = function(){
 
 
 
-
+// fetch ("http://localhost:5678/api/works/"+boutonId, {
+//                 method: 'DELETE',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'Authorization': 'Bearer '+token
+//                 },
+//             })
 
 
 

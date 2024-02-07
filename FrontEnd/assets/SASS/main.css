@@ -362,7 +362,7 @@ main .MessageErreur {
   height: 100%;
   top: 0px;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 999;
+  z-index: 900;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -395,9 +395,10 @@ main .MessageErreur {
 .modale #ModaleContainer img {
   width: 76.86px;
   height: auto;
+  z-index: 990;
 }
 
-.modale #ModaleContainer i {
+.modale #ModaleContainer #FermetureModale {
   width: 24px;
   height: 24px;
   font-size: 24px;
@@ -406,7 +407,34 @@ main .MessageErreur {
   right: 24px;
 }
 
-.modale h2 {
+.modale #ModaleContainer .conteneursuppression {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.modale #ModaleContainer .conteneursuppression .Corbeille {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  border-radius: 2px;
+  background-color: black;
+  z-index: 998;
+  border: 1px solid blue;
+}
+
+.modale #ModaleContainer .conteneursuppression .Corbeille i {
+  color: white;
+  z-index: 999;
+  font-size: 11px;
+}
+
+.modale #ModaleContainer h2 {
   margin: 0;
   display: flex;
   justify-content: center;
@@ -419,7 +447,7 @@ main .MessageErreur {
   color: black;
 }
 
-.modale hr {
+.modale #ModaleContainer hr {
   width: 420px;
   border: 1px solid #b3b3b3;
 }

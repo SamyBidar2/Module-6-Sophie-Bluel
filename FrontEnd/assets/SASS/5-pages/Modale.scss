@@ -4,7 +4,7 @@
     height: 100%;
     top: 0px;
     background: rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    z-index: 900;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -34,13 +34,16 @@
             grid-row-gap: 30px;
         }
 
+
         & img{
             width: 76.86px;
             height: auto;
+            z-index: 990;
             // border-radius: 10px;
         }
 
-        & i{
+
+        & #FermetureModale{
             width: 24px;
             height: 24px;
             font-size: 24px;
@@ -48,29 +51,59 @@
             top:24px;
             right: 24px;
         }
+
+        & .conteneursuppression{
+            display:flex;
+            flex-direction: column;
+            position : relative;
+
+            & .Corbeille{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 17px;
+                height: 17px;
+                position:absolute;
+                top: 5px;
+                right: 8px;
+                border-radius: 2px;
+                background-color: rgba(0, 0, 0, 1);
+                z-index: 998;
+                border: 1px solid blue;
+        
+                & i{
+                    color: white;
+                    z-index: 999;
+                    font-size: 11px ;
+                }
+        }
+
+        
     }
     
 
-    & h2{
-        margin:0;
-        display: flex;
-        justify-content: center;
-        font-family: Work Sans;
-        font-size: 26px;
-        font-weight: 400;
-        line-height: 30px;
-        letter-spacing: 0em;
-        text-align: center;
-        color: rgba(0, 0, 0, 1);
+        & h2{
+            margin:0;
+            display: flex;
+            justify-content: center;
+            font-family: Work Sans;
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 30px;
+            letter-spacing: 0em;
+            text-align: center;
+            color: rgba(0, 0, 0, 1);
+        }
 
+        & hr{
+            width: 420px;
+            border: 1px solid rgba(179, 179, 179, 1);
+        }   
     }
 
-    & hr{
-        width: 420px;
-        border: 1px solid rgba(179, 179, 179, 1);
-    }
+    
+
 .js-modal-close{
-
 }
    
 }
