@@ -159,6 +159,36 @@ li:hover {
   line-height: normal;
 }
 
+#AjoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 30px 0px;
+}
+
+#AjoutForm div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+#AjoutForm label {
+  color: #3D3D3D;
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+#AjoutForm input {
+  border-style: none;
+  width: 420px;
+  height: 51px;
+  background: white;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
 footer nav ul {
   display: flex;
   justify-content: flex-end;
@@ -204,6 +234,35 @@ input[type="submit"] {
   font-family: 'Syne';
   font-weight: 700;
   color: white;
+  text-align: center;
+}
+
+.modalebtnUnselected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  text-align: center;
+  margin: 2.2em auto;
+  font-family: 'Syne';
+  font-weight: 700;
+  color: white;
+  background-color: #a7a7a7;
+}
+
+.boutonAjouter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 173px;
+  height: 36px;
+  background-color: #cbd6dc;
+  border-radius: 50px;
+  font-family: 'Syne';
+  font-weight: 700;
+  color: #306685;
   text-align: center;
 }
 
@@ -368,7 +427,7 @@ main .MessageErreur {
   align-items: center;
 }
 
-.modale #ModaleContainer {
+.modale .ModaleContainer {
   width: 630px;
   height: 688px;
   position: relative;
@@ -378,11 +437,12 @@ main .MessageErreur {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   overflow-y: auto;
 }
 
-.modale #ModaleContainer .ModaleGalerie {
+.modale .ModaleContainer .ModaleGalerie {
   width: 100%;
   box-sizing: border-box;
   display: grid;
@@ -392,13 +452,13 @@ main .MessageErreur {
   grid-row-gap: 30px;
 }
 
-.modale #ModaleContainer img {
+.modale .ModaleContainer img {
   width: 76.86px;
   height: auto;
   z-index: 990;
 }
 
-.modale #ModaleContainer #FermetureModale {
+.modale .ModaleContainer #FermetureModale {
   width: 24px;
   height: 24px;
   font-size: 24px;
@@ -407,13 +467,13 @@ main .MessageErreur {
   right: 24px;
 }
 
-.modale #ModaleContainer .conteneursuppression {
+.modale .ModaleContainer .conteneursuppression {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.modale #ModaleContainer .conteneursuppression .Corbeille {
+.modale .ModaleContainer .conteneursuppression .Corbeille {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -428,13 +488,13 @@ main .MessageErreur {
   border: 1px solid blue;
 }
 
-.modale #ModaleContainer .conteneursuppression .Corbeille i {
+.modale .ModaleContainer .conteneursuppression .Corbeille i {
   color: white;
   z-index: 999;
   font-size: 11px;
 }
 
-.modale #ModaleContainer h2 {
+.modale .ModaleContainer h2 {
   margin: 0;
   display: flex;
   justify-content: center;
@@ -447,9 +507,53 @@ main .MessageErreur {
   color: black;
 }
 
-.modale #ModaleContainer hr {
+.modale .ModaleContainer hr {
   width: 420px;
   border: 1px solid #b3b3b3;
+}
+
+.modale .ModaleContainer .ConteneurAjout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+  height: 169px;
+  background-color: #e8f1f6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  gap: 7px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage i {
+  font-size: 76px;
+  color: #b9c5cc;
+  margin-bottom: 5px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage span {
+  font-size: 12px;
+}
+
+.modale .ModaleContainer a {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  margin: 0;
+}
+
+.modale .ModaleContainer a i {
+  font-size: 21px;
+  color: black;
 }
 
 body {

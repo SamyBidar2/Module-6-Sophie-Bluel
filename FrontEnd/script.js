@@ -143,13 +143,11 @@ function OuvrirModale(){
 
   //Ajoute les images dans la modale
   AfficherModaleGalerieParCategorie(null);
-
- 
 }
 
 //fonction pour fermer la fenetre Modale
 function FermerModale(){
-  const FermerModale = document.getElementById('modale');
+  const FermerModale = document.querySelector('.modale');
 
   FermerModale.classList.remove('visible');
   FermerModale.classList.add('invisible');
@@ -179,6 +177,39 @@ function SuppressionImageGalerie(id){
     })
   }
 }
+
+//Fonction pour ouvrir la fenetre d'ajout de photos 
+function OuvrirFenetreAjout(){
+      const FermerGalerie = document.getElementById("modale");
+      const OuvrirAjout = document.getElementById("modaleAjout");
+
+      FermerGalerie.classList.remove('visible');
+      FermerGalerie.classList.add('invisible');
+      FermerGalerie.setAttribute('aria-hidden', 'true');
+      FermerGalerie.removeAttribute('aria-modal');
+
+      OuvrirAjout.classList.remove('invisible');
+      OuvrirAjout.classList.add('visible');
+      OuvrirAjout.removeAttribute('aria-hidden');
+      OuvrirAjout.setAttribute('aria-modal', 'true');
+}
+
+//Fonction pour revenir sur la fenetre modale précédente
+function Retour(){
+    const FermerAjout = document.getElementById("modaleAjout");
+    const OuvrirGalerie = document.getElementById("modale");
+
+    FermerAjout.classList.remove('visible');
+    FermerAjout.classList.add('invisible');
+    FermerAjout.setAttribute('aria-hidden', 'true');
+    FermerAjout.removeAttribute('aria-modal');
+
+    OuvrirGalerie.classList.remove('invisible');
+    OuvrirGalerie.classList.add('visible');
+    OuvrirGalerie.removeAttribute('aria-hidden');
+    OuvrirGalerie.setAttribute('aria-modal', 'true');
+}
+
 
 window.onload = function(){
   // Chargement de la galerie entière par défaut

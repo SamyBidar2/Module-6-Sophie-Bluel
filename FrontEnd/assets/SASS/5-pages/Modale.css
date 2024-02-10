@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.modale #ModaleContainer {
+.modale .ModaleContainer {
   width: 630px;
   height: 688px;
   position: relative;
@@ -20,11 +20,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   overflow-y: auto;
 }
 
-.modale #ModaleContainer .ModaleGalerie {
+.modale .ModaleContainer .ModaleGalerie {
   width: 100%;
   box-sizing: border-box;
   display: grid;
@@ -34,13 +35,13 @@
   grid-row-gap: 30px;
 }
 
-.modale #ModaleContainer img {
+.modale .ModaleContainer img {
   width: 76.86px;
   height: auto;
   z-index: 990;
 }
 
-.modale #ModaleContainer #FermetureModale {
+.modale .ModaleContainer #FermetureModale {
   width: 24px;
   height: 24px;
   font-size: 24px;
@@ -49,13 +50,13 @@
   right: 24px;
 }
 
-.modale #ModaleContainer .conteneursuppression {
+.modale .ModaleContainer .conteneursuppression {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.modale #ModaleContainer .conteneursuppression .Corbeille {
+.modale .ModaleContainer .conteneursuppression .Corbeille {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,13 +71,13 @@
   border: 1px solid blue;
 }
 
-.modale #ModaleContainer .conteneursuppression .Corbeille i {
+.modale .ModaleContainer .conteneursuppression .Corbeille i {
   color: white;
   z-index: 999;
   font-size: 11px;
 }
 
-.modale #ModaleContainer h2 {
+.modale .ModaleContainer h2 {
   margin: 0;
   display: flex;
   justify-content: center;
@@ -89,7 +90,51 @@
   color: black;
 }
 
-.modale #ModaleContainer hr {
+.modale .ModaleContainer hr {
   width: 420px;
   border: 1px solid #b3b3b3;
+}
+
+.modale .ModaleContainer .ConteneurAjout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+  height: 169px;
+  background-color: #e8f1f6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  gap: 7px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage i {
+  font-size: 76px;
+  color: #b9c5cc;
+  margin-bottom: 5px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage span {
+  font-size: 12px;
+}
+
+.modale .ModaleContainer a {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  margin: 0;
+}
+
+.modale .ModaleContainer a i {
+  font-size: 21px;
+  color: black;
 }
