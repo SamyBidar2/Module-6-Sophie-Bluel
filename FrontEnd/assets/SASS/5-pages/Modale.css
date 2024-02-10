@@ -41,7 +41,7 @@
   z-index: 990;
 }
 
-.modale .ModaleContainer #FermetureModale {
+.modale .ModaleContainer .FermetureModale {
   width: 24px;
   height: 24px;
   font-size: 24px;
@@ -100,7 +100,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 35px;
   margin-bottom: 20px;
 }
 

@@ -40,21 +40,6 @@ input[type="submit"] {
   text-align: center;
 }
 
-.modalebtnUnselected {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 237px;
-  height: 36px;
-  border-radius: 60px;
-  text-align: center;
-  margin: 2.2em auto;
-  font-family: 'Syne';
-  font-weight: 700;
-  color: white;
-  background-color: #a7a7a7;
-}
-
 .boutonAjouter {
   display: flex;
   justify-content: center;
@@ -67,4 +52,8 @@ input[type="submit"] {
   font-weight: 700;
   color: #306685;
   text-align: center;
+}
+
+.boutonAjouter input {
+  display: none;
 }

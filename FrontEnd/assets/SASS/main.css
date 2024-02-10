@@ -163,7 +163,7 @@ li:hover {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin: 30px 0px;
+  margin-top: 30px;
 }
 
 #AjoutForm div {
@@ -173,7 +173,7 @@ li:hover {
 }
 
 #AjoutForm label {
-  color: #3D3D3D;
+  color: #3d3d3d;
   font-family: "Work Sans";
   font-size: 14px;
   font-style: normal;
@@ -187,6 +187,21 @@ li:hover {
   height: 51px;
   background: white;
   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+#AjoutForm #InputAjouter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  text-align: center;
+  margin: 0px 91px;
+  font-family: 'Syne';
+  font-weight: 700;
+  color: white;
+  background-color: #a7a7a7;
 }
 
 footer nav ul {
@@ -237,21 +252,6 @@ input[type="submit"] {
   text-align: center;
 }
 
-.modalebtnUnselected {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 237px;
-  height: 36px;
-  border-radius: 60px;
-  text-align: center;
-  margin: 2.2em auto;
-  font-family: 'Syne';
-  font-weight: 700;
-  color: white;
-  background-color: #a7a7a7;
-}
-
 .boutonAjouter {
   display: flex;
   justify-content: center;
@@ -264,6 +264,10 @@ input[type="submit"] {
   font-weight: 700;
   color: #306685;
   text-align: center;
+}
+
+.boutonAjouter input {
+  display: none;
 }
 
 #introduction {
@@ -458,7 +462,7 @@ main .MessageErreur {
   z-index: 990;
 }
 
-.modale .ModaleContainer #FermetureModale {
+.modale .ModaleContainer .FermetureModale {
   width: 24px;
   height: 24px;
   font-size: 24px;
@@ -517,7 +521,7 @@ main .MessageErreur {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 35px;
   margin-bottom: 20px;
 }
 

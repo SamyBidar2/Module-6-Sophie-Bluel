@@ -118,6 +118,7 @@ function CreationModaleGalerie(data){
         
         document.getElementById(img.id).parentElement.remove(); 
         SuppressionImageGalerie(data[i].id);
+        console.log('Image identifiant' + data[i].id + 'supprimée' )
       });
 
   }
@@ -147,7 +148,7 @@ function OuvrirModale(){
 
 //fonction pour fermer la fenetre Modale
 function FermerModale(){
-  const FermerModale = document.querySelector('.modale');
+  const FermerModale = document.getElementById('modale');
 
   FermerModale.classList.remove('visible');
   FermerModale.classList.add('invisible');
@@ -194,6 +195,16 @@ function OuvrirFenetreAjout(){
       OuvrirAjout.setAttribute('aria-modal', 'true');
 }
 
+//Fonction pour femrer la modale d'ajout
+function FermerModaleAjout(){
+  const FermerModaleAjout = document.getElementById('modaleAjout');
+
+  FermerModaleAjout.classList.remove('visible');
+  FermerModaleAjout.classList.add('invisible');
+  FermerModaleAjout.setAttribute('aria-hidden', 'true');
+  FermerModaleAjout.removeAttribute('aria-modal');
+}
+
 //Fonction pour revenir sur la fenetre modale précédente
 function Retour(){
     const FermerAjout = document.getElementById("modaleAjout");
@@ -209,6 +220,48 @@ function Retour(){
     OuvrirGalerie.removeAttribute('aria-hidden');
     OuvrirGalerie.setAttribute('aria-modal', 'true');
 }
+
+//Formulaire pour l'ajout des images
+const form = document.forms.namedItem("FormulaireAjoutPhoto");
+form.addEventListener(
+  "submit",
+  (event) => {
+    //Valeur des champs de formulaire
+    const titre = document.getElementById('Titreimage').value;
+    const categorie = document.getElementById('Categorieimage').value;
+
+    //Image insérée dans file
+    const Fileinput = document.getElementById('FileInput')
+    const file = FileInput.files[0];
+
+    const output = document.querySelector("#output");
+    const formData = new FormData(form);
+
+    formData.append('titre', titre);
+    formData.append('categorie', categorie);
+    formData.append('image',file);
+
+   // Récupération du token d'authentification depuis la session
+   const userToken = sessionStorage.getItem('Token');
+
+    const request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:5678/api/works", true);
+    request.setRequestHeader('Authorization', 'Bearer ' + userToken); // Ajout du jeton d'authentification dans l'en-tête
+    
+    request.onload = (progress) => {
+      output.innerHTML =
+        request.status === 200
+          ? "Fichier téléversé !"
+          : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
+    };
+
+    request.send(formData);
+    event.preventDefault();
+  },
+  false,
+);
+
+
 
 
 window.onload = function(){

@@ -46,20 +46,21 @@ input[type="submit"]{
 	// bottom: 30px;
 }
 
-.modalebtnUnselected{
-	display: flex;	
-	justify-content: center;
-	align-items: center;
-	width: 237px;
-	height: 36px;
-	border-radius: 60px;
-	text-align: center;
-	margin : 2.2em auto ;
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: rgba(167, 167, 167, 1);
-}
+// .modalebtnUnselected{
+// 	display: flex;	
+// 	justify-content: center;
+// 	align-items: center;
+// 	width: 237px;
+// 	height: 36px;
+// 	border-radius: 60px;
+// 	text-align: center;
+// 	margin: 0px 91px;
+// 	font-family: 'Syne';
+// 	font-weight: 700;
+// 	color: white;
+// 	background-color: rgba(167, 167, 167, 1);
+// }
+
 
 .boutonAjouter{
 	display: flex;	
@@ -73,4 +74,8 @@ input[type="submit"]{
 	font-weight: 700;
 	color: rgba(48, 102, 133, 1);
 	text-align: center;
+
+	& input{
+		display: none;
+	}
 }
