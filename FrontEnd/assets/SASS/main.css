@@ -536,6 +536,7 @@ main .MessageErreur {
   padding-top: 15px;
   padding-bottom: 15px;
   gap: 7px;
+  position: relative;
 }
 
 .modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage i {
@@ -546,6 +547,13 @@ main .MessageErreur {
 
 .modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage span {
   font-size: 12px;
+}
+
+.modale .ModaleContainer .ConteneurAjout .ConteneurAjoutImage #Preview {
+  display: none;
+  width: 129px;
+  height: 100%;
+  position: absolute;
 }
 
 .modale .ModaleContainer a {

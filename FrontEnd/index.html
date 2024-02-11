@@ -94,17 +94,18 @@
 		<!-- fenetre modale Ajout -->
 		<aside id="modaleAjout" class="modale invisible" aria-hidden="true">
 			<div class="ModaleContainer">
-				<a href="#"><i class="fa-solid fa-arrow-left" onclick="Retour()"></i></a>
+				<a href="#"><i class="fa-solid fa-arrow-left" onclick="Retour(), SupprimerImageChargee()"></i></a>
 				<i class="fa-solid fa-xmark FermetureModale" onclick="FermerModaleAjout()"></i>
 				<h2>Ajout photo</h2>
 				<div class="ConteneurAjout">
 					<div class="ConteneurAjoutImage">
-						<i class="fa-regular fa-image"></i>
+						<i id="AjouterUneimage" class="fa-regular fa-image"></i>
 						<div class="boutonAjouter">
 							<label for="FileInput">+ Ajouter photo</label>
-							<input type="file" id="FileInput"class="boutonAjouter" accept="image/png, image/jpeg" onchange=""></input>
+							<input type="file" id="FileInput" class="boutonAjouter" accept="image/png, image/jpeg" onchange="AfficherImage(event)"></input>
 						</div>
-						<span>jpg, png : 4mo max</span>
+						<span id="InfoImage">jpg, png : 4mo max</span>
+						<img id="Preview" src="#" alt="Aperçu de l'image à importer">
 					</div>
 
 					<form id="AjoutForm" method="post" name="FormulaireAjoutPhoto">

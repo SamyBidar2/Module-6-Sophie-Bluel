@@ -221,6 +221,45 @@ function Retour(){
     OuvrirGalerie.setAttribute('aria-modal', 'true');
 }
 
+//Fonction pour afficher l'image que l'on veut ajouter
+function AfficherImage(event) {
+  const file = event.target.files[0];
+  const imagePreview = document.getElementById('Preview');
+  const icone = document.getElementById('AjouterUneimage');
+  const bontonAjouter = document.querySelector('.boutonAjouter');
+  const texte = document.getElementById('InfoImage');
+  
+  if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block'; // Affiche l'image
+          icone.style.display = 'none'; // masque les autres éléments
+          bontonAjouter.style.display = 'none';
+          texte.style.display = 'none';
+      }
+      reader.readAsDataURL(file);
+  } else {
+      imagePreview.src = '#';
+      imagePreview.style.display = 'none'; // Masque l'image
+
+  }
+}
+
+//Fonction pour supprimer l'image que l'on a ajouté pour l'envoi au formulaire (dans le cadre de l'ajout d'une image)
+function SupprimerImageChargee(){
+  const imagePreview = document.getElementById('Preview');
+  const icone = document.getElementById('AjouterUneimage');
+  const bontonAjouter = document.querySelector('.boutonAjouter');
+  const texte = document.getElementById('InfoImage');
+
+  imagePreview.src = '#';
+  imagePreview.style.display = 'none'; // Masque l'image
+  icone.style.display = 'block'; // masque les autres éléments
+  bontonAjouter.style.display = 'flex';
+  texte.style.display = 'block';
+}
+
 //Formulaire pour l'ajout des images
 const form = document.forms.namedItem("FormulaireAjoutPhoto");
 form.addEventListener(
@@ -260,6 +299,17 @@ form.addEventListener(
   },
   false,
 );
+
+
+
+
+// Ajout d'un gestionnaire d'événements onchange pour l'élément FileInput
+// const FileInput = document.getElementById('FileInput');
+// FileInput.addEventListener('change', AfficherImage);
+
+
+
+
 
 
 

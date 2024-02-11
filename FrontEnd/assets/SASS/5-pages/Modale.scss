@@ -92,17 +92,11 @@
             letter-spacing: 0em;
             text-align: center;
             color: rgba(0, 0, 0, 1);
-            // position: absolute;
-            // top: 80px;
-            // left:228px;
         }
 
         & hr{
             width: 420px;
             border: 1px solid rgba(179, 179, 179, 1);
-            // position: absolute;
-            // bottom: 130px;
-            // left:105px;
         }   
 
         & .ConteneurAjout{
@@ -112,7 +106,6 @@
             align-items: center;
             margin-top: 35px;
             margin-bottom: 20px;
-
 
             & .ConteneurAjoutImage{
                 display:flex;
@@ -125,6 +118,7 @@
                 padding-top: 15px;
                 padding-bottom: 15px;
                 gap:7px;
+                position: relative;
 
                 & i{
                     font-size: 76px;
@@ -136,14 +130,23 @@
                 & span{
                     font-size: 12px;
                 }
+
+                & #Preview{
+                    display: none;
+                    width: 129px;
+                    height: 100%;
+                    position: absolute;
+                }
             }
+
+           
         }
 
         & a{
             position:absolute;
-            top:24px;
+            top: 24px;
             left: 24px;
-            margin:0;
+            margin: 0;
 
             & i{
                 font-size: 21px;
@@ -152,9 +155,5 @@
         }
     }
 
-    
-
-.js-modal-close{
-}
    
 }
