@@ -261,55 +261,67 @@ function SupprimerImageChargee(){
 }
 
 //Formulaire pour l'ajout des images
-const form = document.forms.namedItem("FormulaireAjoutPhoto");
-form.addEventListener(
-  "submit",
-  (event) => {
-    //Valeur des champs de formulaire
+let form = document.getElementById("AjoutForm");
+form.addEventListener("submit", function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+    const output = document.getElementById('output');
+
+    // Valeur des champs de formulaire
     const titre = document.getElementById('Titreimage').value;
     const categorie = document.getElementById('Categorieimage').value;
 
-    //Image insérée dans file
-    const Fileinput = document.getElementById('FileInput')
-    const file = FileInput.files[0];
+    // Image insérée dans le champ de fichier
+    const fileInput = document.getElementById('FileInput');
+    const file = fileInput.files[0];
 
-    const output = document.querySelector("#output");
-    const formData = new FormData(form);
+    // Création de l'objet FormData et ajout des données
+    const formData = new FormData();
+    formData.append('title', titre);
+    formData.append('category', categorie);
+    formData.append('image', file);
 
-    formData.append('titre', titre);
-    formData.append('categorie', categorie);
-    formData.append('image',file);
-
-   // Récupération du token d'authentification depuis la session
-   const userToken = sessionStorage.getItem('Token');
-
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5678/api/works", true);
-    request.setRequestHeader('Authorization', 'Bearer ' + userToken); // Ajout du jeton d'authentification dans l'en-tête
-    
-    request.onload = (progress) => {
-      output.innerHTML =
-        request.status === 200
-          ? "Fichier téléversé !"
-          : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
-    };
-
-    request.send(formData);
-    event.preventDefault();
-  },
-  false,
-);
-
-
-
-
-// Ajout d'un gestionnaire d'événements onchange pour l'élément FileInput
-// const FileInput = document.getElementById('FileInput');
-// FileInput.addEventListener('change', AfficherImage);
-
-
-
-
+    // Envoi de la requête POST à l'API
+    var userToken = sessionStorage.getItem('Token');
+    fetch("http://localhost:5678/api/works", {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + userToken
+        },
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Image ajoutée");
+            // output.innerHTML = "Image ajoutée avec succès !";
+            FermerModaleAjout();
+        } else {
+            console.log("Erreur lors de l'ajout");
+            // alert("Une erreur s'est produite lors de l'ajout de l'image.");
+            switch (response.status) {
+                case 400:
+                    output.innerHTML = 'Erreur dans la requête, vérifiez les données saisies';
+                    output.classList.add('MessageErreur');
+                    break;
+                case 401:
+                    output.innerHTML = 'Authentification Erronée';
+                    output.classList.add('MessageErreur');
+                    break;
+                case 500:
+                    output.innerHTML = 'Erreur inconnue';
+                    output.classList.add('MessageErreur');
+                    break;
+                // default:
+                //     output.innerHTML = 'Erreur inconnue';
+                //     break;
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Erreur de réseau:', error);
+        alert("Une erreur réseau s'est produite lors de l'envoi de la requête.");
+    });
+});
 
 
 
@@ -340,17 +352,6 @@ window.onload = function(){
     }
 }
 
-
-
-
-
-// fetch ("http://localhost:5678/api/works/"+boutonId, {
-//                 method: 'DELETE',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Authorization': 'Bearer '+token
-//                 },
-//             })
 
 
 
