@@ -11,7 +11,7 @@ async function InterrogerAPIWorks(){
     }
 
     data = await WorksReponse.json();
-    // console.log(data);
+    console.log(data);
 
     return data;
 } 
@@ -136,7 +136,7 @@ async function AfficherModaleGalerieParCategorie(){
 //Fonction pour ouvrir la fenetre Modale
 function OuvrirModale(){
   const AfficherModale = document.getElementById('modale');
-
+  
   AfficherModale.classList.remove('invisible');
   AfficherModale.classList.add('visible');
   AfficherModale.removeAttribute('aria-hidden');
@@ -170,6 +170,7 @@ function SuppressionImageGalerie(id){
         },
     }).then (Response =>{
       if (Response.ok){
+        
         console.log("Image "+id+ "supprimée")
       }
       else{
@@ -228,6 +229,7 @@ function AfficherImage(event) {
   const icone = document.getElementById('AjouterUneimage');
   const bontonAjouter = document.querySelector('.boutonAjouter');
   const texte = document.getElementById('InfoImage');
+  const BtnValider = document.getElementById('InputAjouter')
   
   if (file) {
       const reader = new FileReader();
@@ -237,6 +239,7 @@ function AfficherImage(event) {
           icone.style.display = 'none'; // masque les autres éléments
           bontonAjouter.style.display = 'none';
           texte.style.display = 'none';
+          BtnValider.style.background = 'rgba(29, 97, 84, 1)'; // une fois l'image chargée, le bouton valider devient vert
       }
       reader.readAsDataURL(file);
   } else {
@@ -292,9 +295,29 @@ form.addEventListener("submit", function(event) {
     })
     .then(response => {
         if (response.ok) {
+          data = response.json();
+            console.log(data);
+            // // Création des éléments
+            // const figure = document.createElement('figure');
+            // figure.id = "figure" + data.id;
+            // const img = document.createElement('img');
+            // img.src=UrlSrc;
+            // img.alt=titre;
+
+            // const figcaption = document.createElement('figcaption');
+            // figcaption.textContent = Titre;
+
+            // // Ajout des éléments img et figcaption à figure
+            // figure.appendChild(img);
+            // figure.appendChild(figcaption);
+
+            // // Ajout de l'élément figure à la Galerie
+            // Galerie.appendChild(figure);
+
+
             console.log("Image ajoutée");
             // output.innerHTML = "Image ajoutée avec succès !";
-            FermerModaleAjout();
+            Retour();
         } else {
             console.log("Erreur lors de l'ajout");
             // alert("Une erreur s'est produite lors de l'ajout de l'image.");
@@ -339,6 +362,10 @@ window.onload = function(){
     if(userToken){
       BoutonModifier.classList.remove('invisible');
       BoutonModifier.classList.add('visible');
+      
+      //Masquer les filtres une fois connecté
+      const MasquerFiltres = document.querySelector('.Filtres');
+      MasquerFiltres.classList.add('invisible');
 
       //Créer le bandeau Mode Edition
       const ModeEdition = `

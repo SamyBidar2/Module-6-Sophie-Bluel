@@ -20,4 +20,3 @@ Lien pour voir la
 
 Pour lire la documentation, utiliser Chrome ou Firefox
 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwNzY3MzAyNiwiZXhwIjoxNzA3NzU5NDI2fQ.aI_DYIEfIQf3A1Unc44IXR6HI3DiHzUaVp3-bVrnT0g
