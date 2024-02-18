@@ -108,17 +108,12 @@ function CreationModaleGalerie(data){
       conteneur.appendChild(img);
       conteneur.appendChild(Corbeille);
       Corbeille.appendChild(icone);
-      
-      Corbeille.addEventListener('click', () => {
-        //fonction suppression
-        //On utilise l'id de l'image pour repérer l'image à supprimer, et on supprime son parent (donc ici le conteneur),
-        //ce qui permet de réadapter automatiquement la grille.
-        // Ensuite on appelle la fonction SuppressionImageGalerie qui va supprimer l'image dans l'API
-        console.log('identifiant', data[i].id);
-        
-        document.getElementById(img.id).parentElement.remove(); 
-        SuppressionImageGalerie(data[i].id);
-        console.log('Image identifiant' + data[i].id + 'supprimée' )
+ 
+    //Ajout d'un EL pour déclencher la suppression de l'image au clic
+      Corbeille.addEventListener('click', () => {        
+        // document.getElementById(img.id).parentElement.remove(); 
+          SuppressionImageGalerie(data[i].id);
+        // console.log('Image identifiant' + data[i].id + 'supprimée' )
       });
 
   }
@@ -126,58 +121,98 @@ function CreationModaleGalerie(data){
 }
 
 // Fonction pour afficher dans la fenetre Modale en fonction de la catégorie
-async function AfficherModaleGalerieParCategorie(){
+async function AfficherModaleGalerie(){
   if (!data) {
     await InterrogerAPIWorks();
   }    
   CreationModaleGalerie(data);
 }
 
-//Fonction pour ouvrir la fenetre Modale
-function OuvrirModale(){
+// Fonction pour ouvrir la fenetre Modale
+function OuvrirModale(event){
   const AfficherModale = document.getElementById('modale');
-  
+    
   AfficherModale.classList.remove('invisible');
   AfficherModale.classList.add('visible');
   AfficherModale.removeAttribute('aria-hidden');
   AfficherModale.setAttribute('aria-modal', 'true');
 
-  //Ajoute les images dans la modale
-  AfficherModaleGalerieParCategorie(null);
+  // Ajoute les images dans la modale
+  AfficherModaleGalerie(null);
 }
 
-//fonction pour fermer la fenetre Modale
-function FermerModale(){
-  const FermerModale = document.getElementById('modale');
+// Fonction pour fermer la fenetre Modale
+function FermerModale(event) {
+  // Vérifier si l'événement est défini
+  if (event) {
+    const FermerModale = document.getElementById('modale');
+    const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
+    const Output = document.getElementById("output");
+    const FormulaireAjout = document.getElementById("AjoutForm");
 
-  FermerModale.classList.remove('visible');
-  FermerModale.classList.add('invisible');
-  FermerModale.setAttribute('aria-hidden', 'true');
-  FermerModale.removeAttribute('aria-modal');
+    // Si l'élément cliqué est l'icône X ou si il contient la classe js-modal-stop, fermer la modale.
+    if (event.target.classList.contains('FermetureModale') || event.target.classList.contains('js-modal-stop')) {
+      FermerModale.classList.remove('visible');
+      FermerModale.classList.add('invisible');
+      FermerModale.setAttribute('aria-hidden', 'true');
+      FermerModale.removeAttribute('aria-modal');
+
+      // Permet de supprimer le message suite à la suppression d'une image
+      MessageSuppression.innerHTML = "";
+      MessageSuppression.classList.add('invisible');
+
+      // Permet de supprimer le message en cas d'erreur d'ajout
+      Output.innerHTML = "";
+      Output.classList.add('invisible');
+
+      // Permet de réinitialiser le formulaire
+      FormulaireAjout.reset();
+    } 
+    //sinon on ne fait rien
+    else return;
+  }
 }
 
 //Fonction de suppression des images dans la galerie principale (appel à l'API et DELETE)
-function SuppressionImageGalerie(id){
-  const figure = document.getElementById("figure" + id);
+function SuppressionImageGalerie(id) {
 
-  if (figure) {
-    var userToken = sessionStorage.getItem('Token');
-    fetch ("http://localhost:5678/api/works/"+ id, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ userToken
-        },
-    }).then (Response =>{
-      if (Response.ok){
-        
-        console.log("Image "+id+ "supprimée")
-      }
-      else{
-        console.log("Erreur lors de la suppression")
-      }
-    })
-  }
+  const userToken = sessionStorage.getItem('Token');
+  fetch("http://localhost:5678/api/works/" + id, {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + userToken
+          },
+      })
+      .then(Response => {
+          if (Response.ok) {
+            // Supprimer l'image de la galerie modale
+            //On utilise l'id de l'image pour repérer l'image à supprimer, et on supprime son parent (donc ici le conteneur),
+            //ce qui permet de réadapter automatiquement la grille.
+            const imgElement = document.getElementById("image" + id);
+            if (imgElement) {
+                imgElement.parentElement.remove();
+            }
+
+            // Supprimer l'image de la galerie principale (DOM)
+            const imgElementGallery = document.getElementById("figure" + id);
+            if (imgElementGallery) {
+                imgElementGallery.remove();
+            }
+              const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
+              MessageSuppression.innerHTML= 'Image supprimée avec succès !';
+              MessageSuppression.classList.remove('invisible');
+
+              console.log("Image " + id + " supprimée avec succès");
+          } else {
+              console.log("Erreur lors de la suppression de l'image");
+              alert("Une erreur s'est produite lors de la suppression de l'image.");
+          }
+      })
+      .catch(error => {
+          console.error('Erreur lors de la suppression:', error);
+          alert("Une erreur s'est produite lors de la suppression de l'image.");
+      });
 }
 
 //Fonction pour ouvrir la fenetre d'ajout de photos 
@@ -197,19 +232,45 @@ function OuvrirFenetreAjout(){
 }
 
 //Fonction pour femrer la modale d'ajout
-function FermerModaleAjout(){
+function FermerModaleAjout(event){
+  // Vérifier si l'événement est défini
+  if (event) {
   const FermerModaleAjout = document.getElementById('modaleAjout');
+  const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
+  const Output = document.getElementById("output");
+  const FormulaireAjout = document.getElementById("AjoutForm");
+  
+   // Si l'élément cliqué est l'icône X ou si il contient la classe js-modal-stop, fermer la modale.
+   if (event.target.classList.contains('FermetureModale') || event.target.classList.contains('js-modal-stop')) {
 
-  FermerModaleAjout.classList.remove('visible');
-  FermerModaleAjout.classList.add('invisible');
-  FermerModaleAjout.setAttribute('aria-hidden', 'true');
-  FermerModaleAjout.removeAttribute('aria-modal');
+      FermerModaleAjout.classList.remove('visible');
+      FermerModaleAjout.classList.add('invisible');
+      FermerModaleAjout.setAttribute('aria-hidden', 'true');
+      FermerModaleAjout.removeAttribute('aria-modal');
+
+      //permet de supprimer le message suite à la suppression d'une image
+      MessageSuppression.innerHTML="";
+      MessageSuppression.classList.add('invisible');
+
+      // permet de supprimer le message en cas d'erreur d'ajout
+      Output.innerHTML="";
+      Output.classList.add('invisible');
+
+      //premet de reinitialiser le formulaire
+      FormulaireAjout.reset(); 
+    }       
+    //sinon on ne fait rien
+    else return;
+  }
 }
 
 //Fonction pour revenir sur la fenetre modale précédente
 function Retour(){
     const FermerAjout = document.getElementById("modaleAjout");
     const OuvrirGalerie = document.getElementById("modale");
+    const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
+    const Output = document.getElementById("output");
+    const FormulaireAjout = document.getElementById("AjoutForm");
 
     FermerAjout.classList.remove('visible');
     FermerAjout.classList.add('invisible');
@@ -220,6 +281,17 @@ function Retour(){
     OuvrirGalerie.classList.add('visible');
     OuvrirGalerie.removeAttribute('aria-hidden');
     OuvrirGalerie.setAttribute('aria-modal', 'true');
+
+    //permet de supprimer le message suite à la suppression d'une image
+    MessageSuppression.innerHTML="";
+    MessageSuppression.classList.add('invisible');
+
+    //permet de supprimer le message en cas d'erreur d'ajout
+    Output.innerHTML="";
+    Output.classList.add('invisible');
+
+    //premet de reinitialiser le formulaire
+    FormulaireAjout.reset(); 
 }
 
 //Fonction pour afficher l'image que l'on veut ajouter
@@ -230,8 +302,37 @@ function AfficherImage(event) {
   const bontonAjouter = document.querySelector('.boutonAjouter');
   const texte = document.getElementById('InfoImage');
   const BtnValider = document.getElementById('InputAjouter')
+
+  //Types de fichiers autorisés
+  const fileTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+  //Fonction pour valider le type de fichier
+  function validFileType(file) {
+    for (let i = 0; i < fileTypes.length; i++) {
+      if (file.type === fileTypes[i]) {
+        return true;
+      }
+    }
+    return false;
+  }
+  //Fonction pour valider la taille du fichier
+  function validFileSize(file){
+    const MaxSize= 4*1024*1024;
+    if (file.size <= MaxSize){
+      return true;
+    }else return false;
+  }
   
   if (file) {
+     if (!validFileType(file) || !validFileSize(file)) {
+      // Affichez un message d'erreur si le type de fichier n'est pas autorisé
+      // alert("Le type de fichier sélectionné n'est pas autorisé. Veuillez sélectionner un fichier JPEG ou PNG.");
+      output=document.getElementById('output');
+      output.innerHTML = 'Seuls les fichiers JPEG ou PNG inférieurs à 4Mo sont autorisés.';
+      output.classList.add('MessageErreur');
+      output.classList.remove('invisible');
+      return; // Arrêtez la fonction si le type de fichier n'est pas autorisé
+    }
       const reader = new FileReader();
       reader.onload = function(e) {
           imagePreview.src = e.target.result;
@@ -295,55 +396,85 @@ form.addEventListener("submit", function(event) {
     })
     .then(response => {
         if (response.ok) {
-          data = response.json();
-            console.log(data);
-            // // Création des éléments
-            // const figure = document.createElement('figure');
-            // figure.id = "figure" + data.id;
-            // const img = document.createElement('img');
-            // img.src=UrlSrc;
-            // img.alt=titre;
-
-            // const figcaption = document.createElement('figcaption');
-            // figcaption.textContent = Titre;
-
-            // // Ajout des éléments img et figcaption à figure
-            // figure.appendChild(img);
-            // figure.appendChild(figcaption);
-
-            // // Ajout de l'élément figure à la Galerie
-            // Galerie.appendChild(figure);
-
-
-            console.log("Image ajoutée");
-            // output.innerHTML = "Image ajoutée avec succès !";
-            Retour();
+          return  response.json();
         } else {
-            console.log("Erreur lors de l'ajout");
-            // alert("Une erreur s'est produite lors de l'ajout de l'image.");
-            switch (response.status) {
+          switch (response.status) {
                 case 400:
                     output.innerHTML = 'Erreur dans la requête, vérifiez les données saisies';
                     output.classList.add('MessageErreur');
+                    output.classList.remove('invisible');
                     break;
                 case 401:
                     output.innerHTML = 'Authentification Erronée';
                     output.classList.add('MessageErreur');
+                    output.classList.remove('invisible');
                     break;
                 case 500:
                     output.innerHTML = 'Erreur inconnue';
                     output.classList.add('MessageErreur');
+                    output.classList.remove('invisible');
                     break;
-                // default:
-                //     output.innerHTML = 'Erreur inconnue';
-                //     break;
             }
         }
-    })
+      })
+    
+    .then(data =>{
+      console.log(data);
+      //#region Création des éléments dans la Galerie modale
+        const ModaleGalerie = document.querySelector('.ModaleGalerie');
+        
+        // Création des éléments
+        const image = document.createElement('img');
+        image.id = "image" + data.id;
+        image.src=data.imageUrl;
+        image.alt=data.title;
+
+        const Corbeille = document.createElement('div');
+        Corbeille.classList.add('Corbeille');
+
+        const conteneur = document.createElement('div');
+        conteneur.classList.add('conteneursuppression');
+
+        const icone = document.createElement('i');
+        icone.classList.add('fa-solid', 'fa-trash-can');
+        
+        ModaleGalerie.appendChild(conteneur);
+        conteneur.appendChild(image);
+        conteneur.appendChild(Corbeille);
+        Corbeille.appendChild(icone);
+        //#endregion
+
+      //#region Création des éléments dans la Galerie principale
+        const figure = document.createElement('figure');
+        figure.id = "figure" + data.id;
+        const img = document.createElement('img');
+        img.src=data.imageUrl;
+        img.alt=data.title;
+
+        const figcaption = document.createElement('figcaption');
+        figcaption.textContent = Titre;
+
+        // Ajout des éléments img et figcaption à figure
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+
+        // Ajout de l'élément figure à la Galerie principale
+        Galerie=document.querySelector('.gallery');
+        Galerie.appendChild(figure);
+
+        console.log("Image ajoutée à la galerie principale");
+      //#endregion
+        Retour();
+
+      //ajout d'un message dans la galerie modale pour informer l'utilisateur de l'ajout
+        const MessageAjout=document.getElementById('MessageAjoutEtSuppression');
+        MessageAjout.innerHTML = "Image ajoutée avec succès !";
+        MessageAjout.classList.remove('invisible');
+    } )
+      
     .catch(error => {
         console.error('Erreur de réseau:', error);
-        alert("Une erreur réseau s'est produite lors de l'envoi de la requête.");
-    });
+      });
 });
 
 
@@ -369,7 +500,7 @@ window.onload = function(){
 
       //Créer le bandeau Mode Edition
       const ModeEdition = `
-      <div class="ModeEdition">
+      <div class="ModeEdition" onclick="OuvrirModale()">
 		  <i class="fa-regular fa-pen-to-square"></i>
 		  <p>Mode édition</p>
 	    </div>`;
@@ -384,3 +515,55 @@ window.onload = function(){
 
 
 
+
+//#region test
+// // Fonction pour arrêter la propagation de l'événement
+// function stopPropagation(event) {
+//   event.stopPropagation();
+// }
+
+
+// let modal = null
+// const openModal = function (e){
+//   e.preventDefault();
+//   const target = document.querySelector(e.target.getElementById('#BoutonModifier'));
+//   target.style.display=null;
+//   target.classList.remove('invisible');
+//   target.classList.add('visible');
+//   target.removeAttribute('aria-hidden');
+//   target.setAttribute('aria-modal', 'true');
+
+//   modal = target;
+//   modal.addEventListener('click', closeModal);
+//   modal.querySelector('.js-close-modal').addEventListener('click', closeModal)
+// }
+
+// const closeModal = function(e){
+//   const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
+//   const Output = document.getElementById("output");
+//   const FormulaireAjout = document.getElementById("AjoutForm");
+
+//   if (modal === null) return;
+//   e.preventDefault();
+//   modal.style.display="none";
+//   modal.classList.remove('visible');
+//   modal.classList.add('invisible');
+//   modal.setAttribute('aria-hidden', 'true');
+//   modal.removeAttribute('aria-modal');
+
+//   modal.removeEventListener('click', closeModal);
+//   modal.querySelector('.js-close-modal').removeEventListener('click', closeModal)
+//   modal = null;
+
+//   // Permet de supprimer le message suite à la suppression d'une image
+//   MessageSuppression.innerHTML = "";
+//   MessageSuppression.classList.add('invisible');
+
+//   // Permet de supprimer le message en cas d'erreur d'ajout
+//   Output.innerHTML = "";
+//   Output.classList.add('invisible');
+
+//   // Permet de réinitialiser le formulaire
+//   FormulaireAjout.reset();
+// }
+//#endregion
