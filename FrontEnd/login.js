@@ -17,8 +17,8 @@ async function login(){
     const mail = document.getElementById('mailLogin').value;
     const Pwd = document.getElementById('PWD').value;
 
-    console.log(mail);
-    console.log(Pwd);
+    // console.log(mail);
+    // console.log(Pwd);
 
 
     let user = {
@@ -59,7 +59,6 @@ async function login(){
         ErreurMP.classList.add('MessageErreur');
         ErreurMP.innerHTML = 'Mot de passe incorrect';
         Message.appendChild(ErreurMP);
-        // window.alert('Erreur: Mot de passe incorrect.');
       }
     }
 

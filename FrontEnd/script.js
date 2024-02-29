@@ -464,6 +464,7 @@ form.addEventListener("submit", function(event) {
 
         console.log("Image ajoutée à la galerie principale");
       //#endregion
+        form.reset();
         Retour();
 
       //ajout d'un message dans la galerie modale pour informer l'utilisateur de l'ajout
@@ -476,8 +477,6 @@ form.addEventListener("submit", function(event) {
         console.error('Erreur de réseau:', error);
       });
 });
-
-
 
 
 window.onload = function(){
