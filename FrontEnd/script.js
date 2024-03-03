@@ -491,7 +491,6 @@ window.onload = function(){
     //si le token existe alors on rend le bouton visible
     if(userToken){
       BoutonModifier.classList.remove('invisible');
-      BoutonModifier.classList.add('visible');
       
       //Masquer les filtres une fois connecté
       const MasquerFiltres = document.querySelector('.Filtres');
