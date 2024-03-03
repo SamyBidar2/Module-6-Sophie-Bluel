@@ -17,7 +17,6 @@
         border-radius: 10px;
         padding-top: 30px;
         background: rgba(255, 255, 255, 1);
-        // border: 1px solid blue;
         display:flex;
         flex-direction: column;
         justify-content:center;
@@ -39,7 +38,6 @@
             width: 76.86px;
             height: auto;
             z-index: 990;
-            // border-radius: 10px;
         }
 
         & .FermetureModale{
@@ -75,9 +73,8 @@
                     z-index: 999;
                     font-size: 11px ;
                 }
-        }    
-    }
-    
+            }    
+        }
 
         & h2{
             margin:0;

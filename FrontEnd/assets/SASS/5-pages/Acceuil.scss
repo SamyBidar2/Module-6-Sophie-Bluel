@@ -11,14 +11,12 @@
 	margin: auto;
 	width: 80%;
 }
-
 #introduction article {
 	flex: 1
 }
 #introduction h2 {
 	margin-bottom: 1em;
 }
-
 #introduction p {
 	margin-bottom: 0.5em;
 }
@@ -48,6 +46,7 @@
 	}
 }
 
+//Classes Visible et Invisible pour afficher ou masquer des éléments
 .invisible{
 	visibility: hidden;
 }

@@ -16,10 +16,8 @@ async function login(){
 
     const mail = document.getElementById('mailLogin').value;
     const Pwd = document.getElementById('PWD').value;
-
     // console.log(mail);
     // console.log(Pwd);
-
 
     let user = {
         email: mail,
@@ -64,5 +62,4 @@ async function login(){
 
 }
 
-//console.log('chargé')
 
