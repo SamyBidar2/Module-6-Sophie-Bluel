@@ -129,7 +129,7 @@ async function AfficherModaleGalerie(){
 }
 
 // Fonction pour ouvrir la fenetre Modale
-function OuvrirModale(event){
+function OuvrirModale(){
   const AfficherModale = document.getElementById('modale');
     
   AfficherModale.classList.remove('invisible');
@@ -167,6 +167,7 @@ function FermerModale(event) {
 
       // Permet de réinitialiser le formulaire
       FormulaireAjout.reset();
+      location.reload();
     } 
     //sinon on ne fait rien
     else return;
@@ -258,6 +259,7 @@ function FermerModaleAjout(event){
 
       //premet de reinitialiser le formulaire
       FormulaireAjout.reset(); 
+      location.reload();
     }       
     //sinon on ne fait rien
     else return;
@@ -452,7 +454,7 @@ form.addEventListener("submit", function(event) {
         img.alt=data.title;
 
         const figcaption = document.createElement('figcaption');
-        figcaption.textContent = Titre;
+        figcaption.textContent = data.title;
 
         // Ajout des éléments img et figcaption à figure
         figure.appendChild(img);
@@ -508,60 +510,3 @@ window.onload = function(){
     }
 }
 
-
-
-
-
-
-
-//#region test
-// // Fonction pour arrêter la propagation de l'événement
-// function stopPropagation(event) {
-//   event.stopPropagation();
-// }
-
-
-// let modal = null
-// const openModal = function (e){
-//   e.preventDefault();
-//   const target = document.querySelector(e.target.getElementById('#BoutonModifier'));
-//   target.style.display=null;
-//   target.classList.remove('invisible');
-//   target.classList.add('visible');
-//   target.removeAttribute('aria-hidden');
-//   target.setAttribute('aria-modal', 'true');
-
-//   modal = target;
-//   modal.addEventListener('click', closeModal);
-//   modal.querySelector('.js-close-modal').addEventListener('click', closeModal)
-// }
-
-// const closeModal = function(e){
-//   const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
-//   const Output = document.getElementById("output");
-//   const FormulaireAjout = document.getElementById("AjoutForm");
-
-//   if (modal === null) return;
-//   e.preventDefault();
-//   modal.style.display="none";
-//   modal.classList.remove('visible');
-//   modal.classList.add('invisible');
-//   modal.setAttribute('aria-hidden', 'true');
-//   modal.removeAttribute('aria-modal');
-
-//   modal.removeEventListener('click', closeModal);
-//   modal.querySelector('.js-close-modal').removeEventListener('click', closeModal)
-//   modal = null;
-
-//   // Permet de supprimer le message suite à la suppression d'une image
-//   MessageSuppression.innerHTML = "";
-//   MessageSuppression.classList.add('invisible');
-
-//   // Permet de supprimer le message en cas d'erreur d'ajout
-//   Output.innerHTML = "";
-//   Output.classList.add('invisible');
-
-//   // Permet de réinitialiser le formulaire
-//   FormulaireAjout.reset();
-// }
-//#endregion
