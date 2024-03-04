@@ -444,6 +444,13 @@ form.addEventListener("submit", function(event) {
         conteneur.appendChild(image);
         conteneur.appendChild(Corbeille);
         Corbeille.appendChild(icone);
+
+        icone.addEventListener('click', function(){
+          const imageElement = document.getElementById(image.id);
+    
+          // Suppression de l'image
+          imageElement.parentElement.remove();
+        })
         //#endregion
 
       //#region Création des éléments dans la Galerie principale
