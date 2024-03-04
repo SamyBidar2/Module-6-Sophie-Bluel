@@ -138,7 +138,7 @@ function OuvrirModale(){
   AfficherModale.setAttribute('aria-modal', 'true');
 
   // Ajoute les images dans la modale
-  AfficherModaleGalerie(null);
+  //AfficherModaleGalerie(null);
 }
 
 // Fonction pour fermer la fenetre Modale
@@ -167,7 +167,7 @@ function FermerModale(event) {
 
       // Permet de réinitialiser le formulaire
       FormulaireAjout.reset();
-      location.reload();
+      //location.reload();
     } 
     //sinon on ne fait rien
     else return;
@@ -298,59 +298,61 @@ function Retour(){
 
 //Fonction pour afficher l'image que l'on veut ajouter
 function AfficherImage(event) {
-  const file = event.target.files[0];
-  const imagePreview = document.getElementById('Preview');
-  const icone = document.getElementById('AjouterUneimage');
-  const bontonAjouter = document.querySelector('.boutonAjouter');
-  const texte = document.getElementById('InfoImage');
-  const BtnValider = document.getElementById('InputAjouter')
 
-  //Types de fichiers autorisés
-  const fileTypes = ["image/jpeg", "image/jpg", "image/png"];
+    const file = event.target.files[0];
+    const imagePreview = document.getElementById('Preview');
+    const icone = document.getElementById('AjouterUneimage');
+    const bontonAjouter = document.querySelector('.boutonAjouter');
+    const texte = document.getElementById('InfoImage');
+    const BtnValider = document.getElementById('InputAjouter')
 
-  //Fonction pour valider le type de fichier
-  function validFileType(file) {
-    for (let i = 0; i < fileTypes.length; i++) {
-      if (file.type === fileTypes[i]) {
+    //Types de fichiers autorisés
+    const fileTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+    //Fonction pour valider le type de fichier
+    function validFileType(file) {
+      for (let i = 0; i < fileTypes.length; i++) {
+        if (file.type === fileTypes[i]) {
+          return true;
+        }
+      }
+      return false;
+    }
+    //Fonction pour valider la taille du fichier
+    function validFileSize(file){
+      const MaxSize= 4*1024*1024;
+      if (file.size <= MaxSize){
         return true;
-      }
+      }else return false;
     }
-    return false;
-  }
-  //Fonction pour valider la taille du fichier
-  function validFileSize(file){
-    const MaxSize= 4*1024*1024;
-    if (file.size <= MaxSize){
-      return true;
-    }else return false;
-  }
-  
-  if (file) {
-     if (!validFileType(file) || !validFileSize(file)) {
-      // Affichez un message d'erreur si le type de fichier n'est pas autorisé
-      // alert("Le type de fichier sélectionné n'est pas autorisé. Veuillez sélectionner un fichier JPEG ou PNG.");
-      output=document.getElementById('output');
-      output.innerHTML = 'Seuls les fichiers JPEG ou PNG inférieurs à 4Mo sont autorisés.';
-      output.classList.add('MessageErreur');
-      output.classList.remove('invisible');
-      return; // Arrêtez la fonction si le type de fichier n'est pas autorisé
-    }
-      const reader = new FileReader();
-      reader.onload = function(e) {
-          imagePreview.src = e.target.result;
-          imagePreview.style.display = 'block'; // Affiche l'image
-          icone.style.display = 'none'; // masque les autres éléments
-          bontonAjouter.style.display = 'none';
-          texte.style.display = 'none';
-          BtnValider.style.background = 'rgba(29, 97, 84, 1)'; // une fois l'image chargée, le bouton valider devient vert
+    
+    if (file) {
+      if (!validFileType(file) || !validFileSize(file)) {
+        // Affichez un message d'erreur si le type de fichier n'est pas autorisé
+        // alert("Le type de fichier sélectionné n'est pas autorisé. Veuillez sélectionner un fichier JPEG ou PNG.");
+        output=document.getElementById('output');
+        output.innerHTML = 'Seuls les fichiers JPEG ou PNG inférieurs à 4Mo sont autorisés.';
+        output.classList.add('MessageErreur');
+        output.classList.remove('invisible');
+        return; // Arrêtez la fonction si le type de fichier n'est pas autorisé
       }
-      reader.readAsDataURL(file);
-  } else {
-      imagePreview.src = '#';
-      imagePreview.style.display = 'none'; // Masque l'image
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // Affiche l'image
+            icone.style.display = 'none'; // masque les autres éléments
+            bontonAjouter.style.display = 'none';
+            texte.style.display = 'none';
+            BtnValider.style.background = 'rgba(29, 97, 84, 1)'; // une fois l'image chargée, le bouton valider devient vert
+        }
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.src = '#';
+        imagePreview.style.display = 'none'; // Masque l'image
 
-  }
+    }
 }
+
 
 //Fonction pour supprimer l'image que l'on a ajouté pour l'envoi au formulaire (dans le cadre de l'ajout d'une image)
 function SupprimerImageChargee(){
@@ -444,13 +446,6 @@ form.addEventListener("submit", function(event) {
         conteneur.appendChild(image);
         conteneur.appendChild(Corbeille);
         Corbeille.appendChild(icone);
-
-        icone.addEventListener('click', function(){
-          const imageElement = document.getElementById(image.id);
-    
-          // Suppression de l'image
-          imageElement.parentElement.remove();
-        })
         //#endregion
 
       //#region Création des éléments dans la Galerie principale
@@ -472,7 +467,22 @@ form.addEventListener("submit", function(event) {
         Galerie.appendChild(figure);
 
         console.log("Image ajoutée à la galerie principale");
+
       //#endregion
+
+      icone.addEventListener('click', function(){
+         // Suppression de l'image dans la modale
+        const imageElement = document.getElementById(image.id);
+        imageElement.parentElement.remove();
+        //Suppression de l'image dans le DOM
+        const imgElementGallery = document.getElementById(figure.id);
+        imgElementGallery.remove();
+        const MessageSuppression = document.getElementById('MessageAjoutEtSuppression');
+        MessageSuppression.innerHTML= 'Image supprimée avec succès !';
+        MessageSuppression.classList.remove('invisible');
+
+        console.log("Image " + id + " supprimée avec succès");
+      })
         form.reset();
         Retour();
 
@@ -514,6 +524,9 @@ window.onload = function(){
 
       // Ajoute le code dans la div #ModeEdition pour faire apparaitre le bandeau
       document.getElementById('ModeEdition').innerHTML = ModeEdition;
+
+      //creation modale galerie
+      AfficherModaleGalerie(null);
     }
 }
 
