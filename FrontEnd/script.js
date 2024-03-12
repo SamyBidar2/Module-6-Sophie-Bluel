@@ -111,7 +111,6 @@ function CreationModaleGalerie(data){
  
     //Ajout d'un EL pour déclencher la suppression de l'image au clic
       Corbeille.addEventListener('click', () => {        
-        // document.getElementById(img.id).parentElement.remove(); 
           SuppressionImageGalerie(data[i].id);
         // console.log('Image identifiant' + data[i].id + 'supprimée' )
       });
@@ -167,7 +166,6 @@ function FermerModale(event) {
 
       // Permet de réinitialiser le formulaire
       FormulaireAjout.reset();
-      //location.reload();
     } 
     //sinon on ne fait rien
     else return;
@@ -259,7 +257,7 @@ function FermerModaleAjout(event){
 
       //premet de reinitialiser le formulaire
       FormulaireAjout.reset(); 
-      location.reload();
+      //location.reload();
     }       
     //sinon on ne fait rien
     else return;
@@ -329,7 +327,6 @@ function AfficherImage(event) {
     if (file) {
       if (!validFileType(file) || !validFileSize(file)) {
         // Affichez un message d'erreur si le type de fichier n'est pas autorisé
-        // alert("Le type de fichier sélectionné n'est pas autorisé. Veuillez sélectionner un fichier JPEG ou PNG.");
         output=document.getElementById('output');
         output.innerHTML = 'Seuls les fichiers JPEG ou PNG inférieurs à 4Mo sont autorisés.';
         output.classList.add('MessageErreur');
@@ -426,8 +423,6 @@ form.addEventListener("submit", function(event) {
       console.log(data);
       //#region Création des éléments dans la Galerie modale
         const ModaleGalerie = document.querySelector('.ModaleGalerie');
-        
-        // Création des éléments
         const image = document.createElement('img');
         image.id = "image" + data.id;
         image.src=data.imageUrl;
@@ -446,7 +441,7 @@ form.addEventListener("submit", function(event) {
         conteneur.appendChild(image);
         conteneur.appendChild(Corbeille);
         Corbeille.appendChild(icone);
-        //#endregion
+      //#endregion
 
       //#region Création des éléments dans la Galerie principale
         const figure = document.createElement('figure');
@@ -467,7 +462,6 @@ form.addEventListener("submit", function(event) {
         Galerie.appendChild(figure);
 
         console.log("Image ajoutée à la galerie principale");
-
       //#endregion
 
       icone.addEventListener('click', function(){
