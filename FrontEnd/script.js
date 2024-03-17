@@ -476,6 +476,7 @@ form.addEventListener("submit", function(event) {
         MessageSuppression.classList.remove('invisible');
 
         console.log("Image " + id + " supprimée avec succès");
+        // SupprimerImageChargee();
       })
         form.reset();
         Retour();
