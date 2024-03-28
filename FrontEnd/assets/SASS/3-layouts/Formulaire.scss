@@ -1,0 +1,111 @@
+
+//Formulaire contact
+#contact {
+	width: 50%;
+	margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2{
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+	margin: 2em 0 1em 0;
+}
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+//Formulaire Login
+#LogForm{
+	display:flex;
+	flex-direction: column;
+	gap:30px;
+	margin : 30px 0px;
+
+	& div{
+		display:flex;
+		flex-direction: column;
+		gap:7px;
+	}
+
+	& label{
+		color: #3D3D3D;
+		font-family: "Work Sans";
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+	}
+}
+
+//Formulaire Ajout image
+#AjoutForm{
+	display:flex;
+	flex-direction: column;
+	gap:30px;
+	margin-top: 30px;
+
+	& div{
+		display:flex;
+		flex-direction: column;
+		gap:7px;
+	}
+
+	& label{
+		color: rgba(61, 61, 61, 1);
+		font-family: "Work Sans";
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+	}
+
+	& input, select{
+		border-style: none;
+		width: 420px;
+		height: 51px;
+		background: rgba(255, 255, 255, 1);
+		box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+		font-family: "Work Sans";
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+	}
+
+	& #InputAjouter{
+		display: flex;	
+		justify-content: center;
+		align-items: center;
+		width: 237px;
+		height: 36px;
+		border-radius: 60px;
+		text-align: center;
+		margin: 0px 91px;
+		font-family: 'Syne';
+		font-weight: 700;
+		color: white;
+		background-color: rgba(167, 167, 167, 1);
+	}
+
+	& #output{
+		display:flex;
+		justify-content: center;
+	}
+}

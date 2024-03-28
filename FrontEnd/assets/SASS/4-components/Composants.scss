@@ -1,0 +1,63 @@
+// Input pour bouton envoyer (formulaire et login)
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+}
+// Input pour les champs mail et Pwd du formulaire login
+#LogForm input{
+    width: 379px;
+    height: 51px;
+    flex-shrink: 0;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+//Boutons filtres
+.bouton{
+	height: 37px;
+	width:198px;
+	flex-shrink: 0;
+	border-radius: 60px;
+	border: 1px solid #1D6154;	
+}
+
+//Ajustements pour le bouton de la modale
+.modalebtn{
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+	width: 237px;
+	height: 36px;
+	border-radius: 60px;
+	background-color: #1D6154;
+	margin : 2.2em auto ;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	text-align: center;
+}
+
+
+.boutonAjouter{
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+	width: 173px;
+	height: 36px;
+	background-color: rgba(203, 214, 220, 1);
+	border-radius: 50px;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: rgba(48, 102, 133, 1);
+	text-align: center;
+
+	& input{
+		display: none;
+	}
+}
