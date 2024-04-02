@@ -290,7 +290,6 @@ function Retour(){
     Output.innerHTML="";
     Output.classList.add('invisible');
 
-    //premet de reinitialiser le formulaire
     FormulaireAjout.reset(); 
 }
 
@@ -302,7 +301,7 @@ function AfficherImage(event) {
     const icone = document.getElementById('AjouterUneimage');
     const bontonAjouter = document.querySelector('.boutonAjouter');
     const texte = document.getElementById('InfoImage');
-    const BtnValider = document.getElementById('InputAjouter')
+    const BtnValider = document.getElementById('InputAjouter');
 
     //Types de fichiers autorisés
     const fileTypes = ["image/jpeg", "image/jpg", "image/png"];
@@ -324,28 +323,32 @@ function AfficherImage(event) {
       }else return false;
     }
     
+    BtnValider.disabled = true;
+    output=document.getElementById('output');
+    output.classList.add('invisible');
+
     if (file) {
       if (!validFileType(file) || !validFileSize(file)) {
-        // Affichez un message d'erreur si le type de fichier n'est pas autorisé
         output=document.getElementById('output');
         output.innerHTML = 'Seuls les fichiers JPEG ou PNG inférieurs à 4Mo sont autorisés.';
         output.classList.add('MessageErreur');
         output.classList.remove('invisible');
-        return; // Arrêtez la fonction si le type de fichier n'est pas autorisé
+        return; 
       }
+        BtnValider.disabled = false;
         const reader = new FileReader();
         reader.onload = function(e) {
             imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block'; // Affiche l'image
-            icone.style.display = 'none'; // masque les autres éléments
+            imagePreview.style.display = 'block'; 
+            icone.style.display = 'none';
             bontonAjouter.style.display = 'none';
             texte.style.display = 'none';
-            BtnValider.style.background = 'rgba(29, 97, 84, 1)'; // une fois l'image chargée, le bouton valider devient vert
+            BtnValider.style.background = 'rgba(29, 97, 84, 1)';
         }
         reader.readAsDataURL(file);
     } else {
         imagePreview.src = '#';
-        imagePreview.style.display = 'none'; // Masque l'image
+        imagePreview.style.display = 'none';
 
     }
 }
@@ -359,8 +362,8 @@ function SupprimerImageChargee(){
   const texte = document.getElementById('InfoImage');
 
   imagePreview.src = '#';
-  imagePreview.style.display = 'none'; // Masque l'image
-  icone.style.display = 'block'; // masque les autres éléments
+  imagePreview.style.display = 'none';
+  icone.style.display = 'block';
   bontonAjouter.style.display = 'flex';
   texte.style.display = 'block';
 }
@@ -368,15 +371,11 @@ function SupprimerImageChargee(){
 //Formulaire pour l'ajout des images
 let form = document.getElementById("AjoutForm");
 form.addEventListener("submit", function(event) {
-    event.preventDefault(); // Empêche le comportement par défaut du formulaire
+    event.preventDefault();
 
     const output = document.getElementById('output');
-
-    // Valeur des champs de formulaire
     const titre = document.getElementById('Titreimage').value;
     const categorie = document.getElementById('Categorieimage').value;
-
-    // Image insérée dans le champ de fichier
     const fileInput = document.getElementById('FileInput');
     const file = fileInput.files[0];
 
@@ -421,7 +420,7 @@ form.addEventListener("submit", function(event) {
     
     .then(data =>{
       console.log(data);
-      //#region Création des éléments dans la Galerie modale
+      //Création des éléments dans la Galerie modale
         const ModaleGalerie = document.querySelector('.ModaleGalerie');
         const image = document.createElement('img');
         image.id = "image" + data.id;
@@ -441,9 +440,9 @@ form.addEventListener("submit", function(event) {
         conteneur.appendChild(image);
         conteneur.appendChild(Corbeille);
         Corbeille.appendChild(icone);
-      //#endregion
+   
 
-      //#region Création des éléments dans la Galerie principale
+      //Création des éléments dans la Galerie principale
         const figure = document.createElement('figure');
         figure.id = "figure" + data.id;
         const img = document.createElement('img');
@@ -453,19 +452,17 @@ form.addEventListener("submit", function(event) {
         const figcaption = document.createElement('figcaption');
         figcaption.textContent = data.title;
 
-        // Ajout des éléments img et figcaption à figure
         figure.appendChild(img);
         figure.appendChild(figcaption);
 
-        // Ajout de l'élément figure à la Galerie principale
         Galerie=document.querySelector('.gallery');
         Galerie.appendChild(figure);
 
         console.log("Image ajoutée à la galerie principale");
-      //#endregion
+      
 
       icone.addEventListener('click', function(){
-         // Suppression de l'image dans la modale
+        // Suppression de l'image dans la modale
         const imageElement = document.getElementById(image.id);
         imageElement.parentElement.remove();
         //Suppression de l'image dans le DOM
@@ -476,7 +473,7 @@ form.addEventListener("submit", function(event) {
         MessageSuppression.classList.remove('invisible');
 
         console.log("Image " + id + " supprimée avec succès");
-        // SupprimerImageChargee();
+
       })
         form.reset();
         Retour();
